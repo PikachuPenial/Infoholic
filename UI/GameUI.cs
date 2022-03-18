@@ -7,17 +7,14 @@ using TMPro;
 using UnboundLib;
 using UnboundLib.GameModes;
 using UnboundLib.Utils.UI;
+using Infoholic.MonoBehaviours;
 using Infoholic.UI;
-using Infoholic.Utilities;
 using UnityEngine;
 
 namespace Infoholic.UI
 {
     public class GameUI
     {
-
-        public static bool inGame;
-        public static bool inPick;
 
         internal static void Initialize()
         {

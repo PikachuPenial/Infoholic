@@ -7,8 +7,8 @@ using TMPro;
 using UnboundLib;
 using UnboundLib.GameModes;
 using UnboundLib.Utils.UI;
+using Infoholic.MonoBehaviours;
 using Infoholic.UI;
-using Infoholic.Utilities;
 using UnityEngine;
 
 namespace Infoholic.UI
@@ -17,7 +17,6 @@ namespace Infoholic.UI
     {
 
         public static bool inGame;
-        public static bool inPick;
 
         internal static void Initialize()
         {
@@ -30,14 +29,6 @@ namespace Infoholic.UI
             {
                 UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] SHOW STATS (game started).");
             }
-
-            while (inGame)
-            {
-                if (!inPick)
-                {
-                    UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] SHOW STATS (pick ended).");
-                }
-            } 
         }
 
         public static void disableStats()
@@ -45,14 +36,6 @@ namespace Infoholic.UI
             if (!inGame)
             {
                 UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] HIDE STATS (game ended).");
-            }
-
-            while (inGame)
-            {
-                if (inPick)
-                {
-                    UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] HIDE STATS (pick started).");
-                }
             }
         }
     }

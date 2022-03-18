@@ -7,8 +7,8 @@ using TMPro;
 using UnboundLib;
 using UnboundLib.GameModes;
 using UnboundLib.Utils.UI;
+using Infoholic.MonoBehaviours;
 using Infoholic.UI;
-using Infoholic.Utilities;
 using UnityEngine;
 
 namespace Infoholic
@@ -40,12 +40,25 @@ namespace Infoholic
         {
             UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] Mod is loaded (somehow.)");
 
-            GameModeManager.AddHook(GameModeHooks.HookGameStart, GameActions.GameStart);
-            GameModeManager.AddHook(GameModeHooks.HookGameEnd, GameActions.GameEnd);
-            GameModeManager.AddHook(GameModeHooks.HookPickStart, GameActions.PickStart);
-            GameModeManager.AddHook(GameModeHooks.HookPickEnd, GameActions.PickEnd);
+            GameModeManager.AddHook(GameModeHooks.HookGameStart, this.GameStart);
+            GameModeManager.AddHook(GameModeHooks.HookGameEnd, this.GameEnd);
 
             ToggleGameUI.Initialize();
+        }
+
+        private IEnumerator GameStart(IGameModeHandler gameModeHandler)
+        {
+            ToggleGameUI.inGame = true;
+            GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
+            UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] inGame is now true.");
+            yield break;
+        }
+
+        private IEnumerator GameEnd(IGameModeHandler gameModeHandler)
+        {
+            ToggleGameUI.inGame = false;
+            UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] inGame is now false.");
+            yield break;
         }
     }
 }
