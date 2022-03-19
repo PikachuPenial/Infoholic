@@ -14,7 +14,6 @@ using UnityEngine;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency("pykess.rounds.plugins.moddingutils", BepInDependency.DependencyFlags.HardDependency)]
     [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "0.0.1")]
     [BepInProcess("Rounds.exe")]
 

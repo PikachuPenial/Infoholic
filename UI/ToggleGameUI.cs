@@ -27,7 +27,7 @@ namespace Infoholic.UI
         {
             if (inGame)
             {
-                UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] SHOW STATS (game started).");
+
             }
         }
 
@@ -35,7 +35,7 @@ namespace Infoholic.UI
         {
             if (!inGame)
             {
-                UnityEngine.Debug.Log($"[{Infoholic.ModInitials}] HIDE STATS (game ended).");
+
             }
         }
     }
