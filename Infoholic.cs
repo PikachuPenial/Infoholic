@@ -160,12 +160,12 @@ namespace Infoholic
                 Infoholic.FontSpacing = value;
             }, out fontSpacingSlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textX;
-            MenuHandler.CreateSlider("Text X Offset", menu, 50, -10f, 50f, (float)Infoholic.TextX, delegate(float value)
+            MenuHandler.CreateSlider("Text X Offset", menu, 50, -25f, 50f, (float)Infoholic.TextX, delegate(float value)
             {
                 Infoholic.TextX = (int)value;
             }, out textX, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textY;
-            MenuHandler.CreateSlider("Text Y Offset", menu, 50, -10f, 25f, (float)Infoholic.TextY, delegate(float value)
+            MenuHandler.CreateSlider("Text Y Offset", menu, 50, -25f, 25f, (float)Infoholic.TextY, delegate(float value)
             {
                 Infoholic.TextY = (int)value;
             }, out textY, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);

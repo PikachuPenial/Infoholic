@@ -14,9 +14,6 @@
     <Reference Include="BepInEx">
       <HintPath>..\..\..\Downloads\BepInEx_x86_5.4.11.0\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
-    <Reference Include="ModdingUtils">
-      <HintPath>..\..\..\AppData\Roaming\r2modmanPlus-local\ROUNDS\profiles\Mod Creating\BepInEx\plugins\Pykess-ModdingUtils\ModdingUtils.dll</HintPath>
-    </Reference>
     <Reference Include="PhotonUnityNetworking">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ROUNDS\Rounds_Data\Managed\PhotonUnityNetworking.dll</HintPath>
     </Reference>
