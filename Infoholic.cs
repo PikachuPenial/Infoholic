@@ -29,6 +29,7 @@ namespace Infoholic
 
         public static bool inGame;
         public static bool inPick;
+        public static bool inBattle;
         public static bool inSettings;
         public static bool inSandbox;
 
@@ -96,6 +97,12 @@ namespace Infoholic
         private IEnumerator PickStart(IGameModeHandler gameModeHandler)
         {
             inPick = true;
+            inBattle = false;
+
+            if (DisableDuringBattlePhase)
+            {
+                GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
+            }
 
             InfoholicDebug.Log($"[{Infoholic.ModInitials}] inPick is now true.");
             yield break;
@@ -104,6 +111,7 @@ namespace Infoholic
         private IEnumerator PickEnd(IGameModeHandler gameModeHandler)
         {
             inPick = false;
+            inBattle = true;
 
             if (DisableDuringPickPhase)
             {
@@ -132,6 +140,10 @@ namespace Infoholic
             {
                 Infoholic.DisableDuringPickPhase = value;
             }, 50, true, null, null, null, null);
+            GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Disable during battle phase", menu, delegate (bool value)
+            {
+                Infoholic.DisableDuringBattlePhase = value;
+            }, 50, true, null, null, null, null);
             Slider opacitySlider;
             MenuHandler.CreateSlider("Text Opacity", menu, 50, 0f, 1f, Infoholic.Opacity, delegate(float value)
             {
@@ -148,12 +160,12 @@ namespace Infoholic
                 Infoholic.FontSpacing = value;
             }, out fontSpacingSlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textX;
-            MenuHandler.CreateSlider("Text X Offset", menu, 50, 0f, 50f, (float)Infoholic.TextX, delegate(float value)
+            MenuHandler.CreateSlider("Text X Offset", menu, 50, -10f, 50f, (float)Infoholic.TextX, delegate(float value)
             {
                 Infoholic.TextX = (int)value;
             }, out textX, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textY;
-            MenuHandler.CreateSlider("Text Y Offset", menu, 50, 0f, 25f, (float)Infoholic.TextY, delegate(float value)
+            MenuHandler.CreateSlider("Text Y Offset", menu, 50, -10f, 25f, (float)Infoholic.TextY, delegate(float value)
             {
                 Infoholic.TextY = (int)value;
             }, out textY, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);
@@ -210,6 +222,18 @@ namespace Infoholic
             set
             {
                 PlayerPrefs.SetInt(Infoholic.GetConfigKey("DisableDuringPickPhase"), value ? 1 : 0);
+            }
+        }
+
+        public static bool DisableDuringBattlePhase
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(Infoholic.GetConfigKey("DisableDuringBattlePhase"), 0) == 1;
+            }
+            set
+            {
+                PlayerPrefs.SetInt(Infoholic.GetConfigKey("DisableDuringBattlePhase"), value ? 1 : 0);
             }
         }
 

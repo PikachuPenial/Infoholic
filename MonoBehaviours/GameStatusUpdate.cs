@@ -248,6 +248,11 @@ namespace Infoholic.MonoBehaviours
                     Destroy(this.gameObject);
                 }
 
+                if (Infoholic.DisableDuringBattlePhase & Infoholic.inBattle)
+                {
+                    Destroy(this.gameObject);
+                }
+
                 if (!Infoholic.SettingsEnableMod)
                 {
                     Destroy(this.gameObject);
