@@ -1,7 +1,7 @@
 {
     "name": "Infoholic",
     "version_number": "0.0.1",
-    "website_url": "https://github.com/otDan/PlayerMarkers",
+    "website_url": "https://github.com/PikachuPenial/Infoholic",
     "description": "A ROUNDS mod that shows you the most important stats at all time! Created by Penial.",
     "dependencies": [
         "willis81808-UnboundLib-2.7.4",

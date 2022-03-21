@@ -1,4 +1,4 @@
-# Infoholic
+# Infoholic (BETA)
 
  A ROUNDS mod that shows you the important stats at all times!
 
@@ -17,3 +17,9 @@ Initial Beta release.
 
 ---
 </details>
+
+Thank you to the following people:
+
+Lillith - Helping me when my brain was on fire.
+
+Porty - Implementing text scaling.

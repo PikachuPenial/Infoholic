@@ -217,6 +217,18 @@ namespace Infoholic.MonoBehaviours
                     burstsText.text = $"Bursts: [{gun.bursts:f0}]";
                     burstsText.alpha = Infoholic.Opacity;
                     burstsText.fontSize = Infoholic.FontSize;
+
+                    UpdateTextPosition();
+                }
+
+                if (!Infoholic.inGame)
+                {
+                    Destroy(this.gameObject);
+                }
+
+                if (Infoholic.inSettings & !Infoholic.inGame)
+                {
+                    Destroy(this.gameObject);
                 }
 
                 if (Infoholic.DisableDuringPickPhase & Infoholic.inPick)
@@ -233,6 +245,12 @@ namespace Infoholic.MonoBehaviours
                 {
                     Destroy(this.gameObject);
                 }
+
+                //if (!Infoholic.inPick & !Infoholic.inBattle & !Infoholic.inMatchPoint & !Infoholic.inMatchRound)
+                //{
+                    //Infoholic.inGame = false;
+                    //InfoholicDebug.Log($"[{Infoholic.ModInitials}] inGame is now false!!!!!");
+                //}
             }
         }
 

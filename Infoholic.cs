@@ -60,7 +60,10 @@ namespace Infoholic
 
             Unbound.RegisterMenu("<b>Infoholic Settings (BETA)</b>", delegate ()
             {
-                Infoholic.inSettings = true;
+                inSettings = true;
+                inGame = false;
+                inPick = false;
+                inBattle = false;
 
                 SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
 
@@ -89,6 +92,8 @@ namespace Infoholic
         private IEnumerator GameEnd(IGameModeHandler gameModeHandler)
         {
             inGame = false;
+            inPick = false;
+            inBattle = false;
 
             InfoholicDebug.Log($"[{Infoholic.ModInitials}] inGame is now false.");
             yield break;
@@ -129,19 +134,36 @@ namespace Infoholic
             MenuHandler.CreateText("Infoholic Settings (BETA)", menu, out textMeshProUGUI, 60, true, null, null, null, null);
             GameObject toggle = MenuHandler.CreateToggle(Infoholic.SettingsEnableMod, "<b><color=#09ff00>Enable Mod<b></color>", menu, delegate(bool value)
             {
-                if (inGame)
+                if (inGame & inPick & !DisableDuringPickPhase)
                 {
                     GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
+                    InfoholicDebug.Log($"[{Infoholic.ModInitials}] MENU PULLED UP since you are in game, are in pick phase, and have disable during pick phase off");
+
+                }
+
+                if (inGame & inBattle & !DisableDuringBattlePhase)
+                {
+                    GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
+                    InfoholicDebug.Log($"[{Infoholic.ModInitials}] MENU PULLED UP since you are in game, are in battle phase, and have disable during battle phase off");
                 }
 
                 Infoholic.SettingsEnableMod = value;
             }, 50, true, null, null, null, null);
             GameObject toggle2 = MenuHandler.CreateToggle(Infoholic.DisableDuringPickPhase, "Disable during pick phase", menu, delegate(bool value)
             {
+                if (inPick)
+                {
+                    GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
+                }
+
                 Infoholic.DisableDuringPickPhase = value;
             }, 50, true, null, null, null, null);
             GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Disable during battle phase", menu, delegate (bool value)
             {
+                if (inBattle)
+                {
+                    GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
+                }
                 Infoholic.DisableDuringBattlePhase = value;
             }, 50, true, null, null, null, null);
             Slider opacitySlider;
@@ -150,39 +172,39 @@ namespace Infoholic
                 Infoholic.Opacity = value;
             }, out opacitySlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider fontSizeSlider;
-            MenuHandler.CreateSlider("Text Size", menu, 50, 0f, 3f, Infoholic.FontSize, delegate(float value)
+            MenuHandler.CreateSlider("Text Size", menu, 50, 0f, 5f, Infoholic.FontSize, delegate(float value)
             {
                 Infoholic.FontSize = value;
             }, out fontSizeSlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider fontSpacingSlider;
-            MenuHandler.CreateSlider("Text Spacing", menu, 50, -1f, 1f, Infoholic.FontSpacing, delegate (float value)
+            MenuHandler.CreateSlider("Text Spacing", menu, 50, -3f, 2f, Infoholic.FontSpacing, delegate (float value)
             {
                 Infoholic.FontSpacing = value;
             }, out fontSpacingSlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textX;
-            MenuHandler.CreateSlider("Text X Offset", menu, 50, -25f, 50f, (float)Infoholic.TextX, delegate(float value)
+            MenuHandler.CreateSlider("Text X Offset", menu, 50, -50f, 50f, (float)Infoholic.TextX, delegate(float value)
             {
                 Infoholic.TextX = (int)value;
             }, out textX, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textY;
-            MenuHandler.CreateSlider("Text Y Offset", menu, 50, -25f, 25f, (float)Infoholic.TextY, delegate(float value)
+            MenuHandler.CreateSlider("Text Y Offset", menu, 50, -50f, 50f, (float)Infoholic.TextY, delegate(float value)
             {
                 Infoholic.TextY = (int)value;
             }, out textY, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);
-            //MenuHandler.CreateButton("<b><color=#ff0000>Reset</color></b> all settings (reopen menu for preview)", menu, delegate ()
-            //{
-                //Infoholic.TextX = 0;
-                //Infoholic.TextY = 0;
-                //Infoholic.Opacity = 0.75f;
-                //Infoholic.FontSize = 2f;
-                //textX.value = (float)Infoholic.TextX;
-                //textY.value = (float)Infoholic.TextY;
-                //opacitySlider.value = Infoholic.Opacity;
-                //fontSizeSlider.value = Infoholic.FontSize;
+            MenuHandler.CreateButton("<b><color=#ff0000>Reset</color></b> all values", menu, delegate ()
+            {
+                Infoholic.TextX = 0;
+                Infoholic.TextY = 0;
+                Infoholic.Opacity = 0.75f;
+                Infoholic.FontSize = 2f;
+                Infoholic.FontSpacing = 0f;
+                textX.value = (float)Infoholic.TextX;
+                textY.value = (float)Infoholic.TextY;
+                opacitySlider.value = Infoholic.Opacity;
+                fontSizeSlider.value = Infoholic.FontSize;
+                fontSpacingSlider.value = Infoholic.FontSpacing;
 
-                //UnityEngine.Object.Destroy(transform.gameObject);
-
-            //}, 40, true, null, null, null, null);
+            }, 40, true, null, null, null, null);
             MenuHandler.CreateText("<b><color=#ff0000>^^</color></b>(Some of these settings could potentially break your game, requiring a restart.)<b><color=#ff0000>^^</color></b>", menu, out textMeshProUGUI, 20, true, null, null, null, null);
             MenuHandler.CreateText("<b>(PLEASE report all bugs to Penial#3298 on discord!)</b>", menu, out textMeshProUGUI, 20, true, null, null, null, null);
             GameObject toggledebug = MenuHandler.CreateToggle(Infoholic.DebugMode, "<b>DEBUG MODE</b>", menu, delegate (bool value)

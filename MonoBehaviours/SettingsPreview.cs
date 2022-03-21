@@ -141,6 +141,7 @@ namespace Infoholic.MonoBehaviours
         public void Update()
         {
             {
+
                 if (Infoholic.inSettings)
                 {
                     healthText.text = "Health: 100/100";
@@ -190,11 +191,6 @@ namespace Infoholic.MonoBehaviours
                     burstsText.fontSize = Infoholic.FontSize;
 
                     UpdateTextPosition();
-                }
-
-                if (Infoholic.inGame)
-                {
-                    Destroy(this.gameObject);
                 }
 
                 if (!Infoholic.inSettings)
