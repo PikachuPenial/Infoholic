@@ -21,35 +21,11 @@ namespace Infoholic.MonoBehaviours
     internal class GameStatusUpdate : MonoBehaviour
     {
 
-        private static TextMeshProUGUI healthText;
-
-        private static TextMeshProUGUI livesText;
-
-        private static TextMeshProUGUI blockCooldownText;
-
-        private static TextMeshProUGUI movementSpeedText;
-
-        private static TextMeshProUGUI damageText;
-
-        private static TextMeshProUGUI lifeStealText;
-
-        private static TextMeshProUGUI attackSpeedText;
-
-        private static TextMeshProUGUI projectileSpeedText;
-
-        private static TextMeshProUGUI projectileSimulationSpeedText;
-
-        private static TextMeshProUGUI reloadTimeText;
-
-        private static TextMeshProUGUI bulletGravityText;
-
-        private static TextMeshProUGUI ammoText;
-
-        private static TextMeshProUGUI bulletsText;
-
-        private static TextMeshProUGUI reflectsText;
-
-        private static TextMeshProUGUI burstsText;
+        private static TextMeshProUGUI
+            healthText, livesText, blockCooldownText, movementSpeedText,
+            damageText, lifeStealText, attackSpeedText, projectileSpeedText,
+            projectileSimulationSpeedText, reloadTimeText, bulletGravityText, ammoText,
+            bulletsText, reflectsText, burstsText;
 
         private Player player;
 
@@ -87,7 +63,6 @@ namespace Infoholic.MonoBehaviours
             healthText.gameObject.AddComponent<DestroyOnUnparent>();
             healthText.transform.parent = gameObject.transform;
             healthText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            healthText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-15f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             healthText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Lives
@@ -95,7 +70,6 @@ namespace Infoholic.MonoBehaviours
             livesText.gameObject.AddComponent<DestroyOnUnparent>();
             livesText.transform.parent = gameObject.transform;
             livesText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            livesText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-16f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             livesText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Block Cooldown
@@ -103,7 +77,6 @@ namespace Infoholic.MonoBehaviours
             blockCooldownText.gameObject.AddComponent<DestroyOnUnparent>();
             blockCooldownText.transform.parent = gameObject.transform;
             blockCooldownText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            blockCooldownText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-17f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             blockCooldownText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Damage
@@ -111,7 +84,6 @@ namespace Infoholic.MonoBehaviours
             damageText.gameObject.AddComponent<DestroyOnUnparent>();
             damageText.transform.parent = gameObject.transform;
             damageText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            damageText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-18f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             damageText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Life Steal
@@ -119,7 +91,6 @@ namespace Infoholic.MonoBehaviours
             lifeStealText.gameObject.AddComponent<DestroyOnUnparent>();
             lifeStealText.transform.parent = gameObject.transform;
             lifeStealText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            lifeStealText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-19f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             lifeStealText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
 
@@ -128,7 +99,6 @@ namespace Infoholic.MonoBehaviours
             movementSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
             movementSpeedText.transform.parent = gameObject.transform;
             movementSpeedText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            movementSpeedText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-20f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             movementSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Attack Speed
@@ -136,7 +106,6 @@ namespace Infoholic.MonoBehaviours
             attackSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
             attackSpeedText.transform.parent = gameObject.transform;
             attackSpeedText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            attackSpeedText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-21f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             attackSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Projectile Speed
@@ -144,7 +113,6 @@ namespace Infoholic.MonoBehaviours
             projectileSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
             projectileSpeedText.transform.parent = gameObject.transform;
             projectileSpeedText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            projectileSpeedText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-22f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             projectileSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Projectile Simulation Speed
@@ -152,7 +120,6 @@ namespace Infoholic.MonoBehaviours
             projectileSimulationSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
             projectileSimulationSpeedText.transform.parent = gameObject.transform;
             projectileSimulationSpeedText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            projectileSimulationSpeedText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-23f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             projectileSimulationSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Reload Time
@@ -160,7 +127,6 @@ namespace Infoholic.MonoBehaviours
             reloadTimeText.gameObject.AddComponent<DestroyOnUnparent>();
             reloadTimeText.transform.parent = gameObject.transform;
             reloadTimeText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            reloadTimeText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-24f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             reloadTimeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bullet Gravity
@@ -168,7 +134,6 @@ namespace Infoholic.MonoBehaviours
             bulletGravityText.gameObject.AddComponent<DestroyOnUnparent>();
             bulletGravityText.transform.parent = gameObject.transform;
             bulletGravityText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            bulletGravityText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-25f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             bulletGravityText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Ammo
@@ -176,7 +141,6 @@ namespace Infoholic.MonoBehaviours
             ammoText.gameObject.AddComponent<DestroyOnUnparent>();
             ammoText.transform.parent = gameObject.transform;
             ammoText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            ammoText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-26f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             ammoText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bullets
@@ -184,7 +148,6 @@ namespace Infoholic.MonoBehaviours
             bulletsText.gameObject.AddComponent<DestroyOnUnparent>();
             bulletsText.transform.parent = gameObject.transform;
             bulletsText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            bulletsText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-27f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             bulletsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Reflects
@@ -192,7 +155,6 @@ namespace Infoholic.MonoBehaviours
             reflectsText.gameObject.AddComponent<DestroyOnUnparent>();
             reflectsText.transform.parent = gameObject.transform;
             reflectsText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            reflectsText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, (-28f + Infoholic.FontSpacing) + Infoholic.TextY, 0f);
             reflectsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bursts
@@ -200,8 +162,9 @@ namespace Infoholic.MonoBehaviours
             burstsText.gameObject.AddComponent<DestroyOnUnparent>();
             burstsText.transform.parent = gameObject.transform;
             burstsText.gameObject.transform.localScale = new Vector3(.4f, .4f, .4f);
-            burstsText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -29f + Infoholic.TextY, 0f);
             burstsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
+
+            UpdateTextPosition();
         }
 
         public void Update()
@@ -271,6 +234,39 @@ namespace Infoholic.MonoBehaviours
                     Destroy(this.gameObject);
                 }
             }
+        }
+
+        private void UpdateTextPosition()
+        {
+            healthText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -15f + Infoholic.TextY + (Infoholic.FontSpacing * 14), 0f);
+
+            livesText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -16f + Infoholic.TextY + (Infoholic.FontSpacing * 13), 0f);
+
+            blockCooldownText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -17f + Infoholic.TextY + (Infoholic.FontSpacing * 12), 0f);
+
+            damageText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -18f + Infoholic.TextY + (Infoholic.FontSpacing * 11), 0f);
+
+            lifeStealText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -19f + Infoholic.TextY + (Infoholic.FontSpacing * 10), 0f);
+
+            movementSpeedText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -20f + Infoholic.TextY + (Infoholic.FontSpacing * 9), 0f);
+
+            attackSpeedText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -21f + Infoholic.TextY + (Infoholic.FontSpacing * 8), 0f);
+
+            projectileSpeedText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -22f + Infoholic.TextY + (Infoholic.FontSpacing * 7), 0f);
+
+            projectileSimulationSpeedText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -23f + Infoholic.TextY + (Infoholic.FontSpacing * 6), 0f);
+
+            reloadTimeText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -24f + Infoholic.TextY + (Infoholic.FontSpacing * 5), 0f);
+
+            bulletGravityText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -25f + Infoholic.TextY + (Infoholic.FontSpacing * 4), 0f);
+
+            ammoText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -26f + Infoholic.TextY + (Infoholic.FontSpacing * 3), 0f);
+
+            bulletsText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -27f + Infoholic.TextY + (Infoholic.FontSpacing * 2), 0f);
+
+            reflectsText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -28f + Infoholic.TextY + (Infoholic.FontSpacing * 1), 0f);
+
+            burstsText.gameObject.transform.position = new Vector3(5f + Infoholic.TextX, -29f + Infoholic.TextY, 0f);
         }
 
         public class DestroyOnUnparent : MonoBehaviour
