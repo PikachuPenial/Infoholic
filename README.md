@@ -18,6 +18,8 @@ Initial Beta release.
 ---
 </details>
 
+---
+
 Thank you to the following people:
 
 Lillith - Helping me when my brain was on fire.
