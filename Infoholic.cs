@@ -6,6 +6,7 @@ using HarmonyLib;
 using TMPro;
 using UnboundLib;
 using UnboundLib.GameModes;
+using UnboundLib.Utils;
 using UnboundLib.Utils.UI;
 using Infoholic.MonoBehaviours;
 using Infoholic.Utilities;
@@ -15,7 +16,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "0.0.1")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "0.0.2")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -24,7 +25,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "0.0.1";
+        public const string Version = "0.0.2";
         private const string CompatibilityModName = "Infoholic";
 
         public static bool inGame;
@@ -32,6 +33,8 @@ namespace Infoholic
         public static bool inBattle;
         public static bool inSettings;
         public static bool inSandbox;
+
+        public static bool inSandboxStatsSpawned;
 
         public static Infoholic instance { get; private set; }
 
@@ -62,6 +65,8 @@ namespace Infoholic
             {
                 inSettings = true;
                 inGame = false;
+                inSandbox = false;
+                inSandboxStatsSpawned = false;
                 inPick = false;
                 inBattle = false;
 
@@ -75,6 +80,22 @@ namespace Infoholic
             GameModeManager.AddHook(GameModeHooks.HookPickStart, this.PickStart);
             GameModeManager.AddHook(GameModeHooks.HookPickEnd, this.PickEnd);
         }
+
+        //void Update()
+        //{
+            //if (GameModeManager.CurrentHandlerID == GameModeManager.SandBoxID)
+            //{
+                //inGame = true;
+                //inSandbox = true;
+            //}
+
+            //if (inSandbox & !inSandboxStatsSpawned)
+            //{
+                //GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
+                //inSandboxStatsSpawned = true;
+            //}
+
+        //}
 
         private IEnumerator GameStart(IGameModeHandler gameModeHandler)
         {
