@@ -7,6 +7,24 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 0.0.3</summary>
+<br>
+
+Released on <i>3/23/2022</i>
+
+
+Added a keybinding to disable the menu on the fly (O by default.)
+
+Centered the text better to the bottom left of the screen by default.
+
+Fixed bugs relating to the Settings Preview, shouldn't glitch out anymore.
+
+Fixed bugs with Disable during pick phase.
+
+---
+</details>
+
+<details>
 <summary>Version 0.0.2</summary>
 <br>
 
