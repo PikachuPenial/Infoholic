@@ -16,7 +16,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "0.0.3")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "0.0.4")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -25,7 +25,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "0.0.3";
+        public const string Version = "0.0.4";
         private const string CompatibilityModName = "Infoholic";
 
         private static TextMeshProUGUI keyText;
@@ -36,14 +36,13 @@ namespace Infoholic
         public static bool inPick;
         public static bool inBattle;
         public static bool inSettings;
-        public static bool inSandbox;
-
-        public static bool inSandboxStatsSpawned;
 
         private bool detectKey;
         private bool haveDetectedKey;
 
         public static bool statsToggledPressed;
+        public static bool previewStatsToggledPressed;
+
         public static float statsToggled;
 
         public static Infoholic instance { get; private set; }
@@ -74,15 +73,14 @@ namespace Infoholic
             Unbound.RegisterMenu("<b>Infoholic Settings (BETA)</b>", delegate ()
             {
                 inSettings = true;
-                inGame = false;
-                inSandbox = false;
-                inSandboxStatsSpawned = false;
-                inPick = false;
-                inBattle = false;
+                previewStatsToggledPressed = false;
 
-                SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
+                if (!inGame)
+                {
+                    SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
+                }
 
-            }, new Action<GameObject>(this.NewGUI), null, false);
+            }, new Action<GameObject>(this.NewGUI), null, true);
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, this.GameStart);
             GameModeManager.AddHook(GameModeHooks.HookGameEnd, this.GameEnd);
@@ -141,7 +139,7 @@ namespace Infoholic
                 Infoholic.statsToggledPressed = false;
             }
 
-            if (Infoholic.DisableDuringPickPhase)
+            if (DisableDuringPickPhase)
             {
                 Infoholic.statsToggledPressed = true;
             }
@@ -157,10 +155,10 @@ namespace Infoholic
 
             if (DisableDuringPickPhase)
             {
-                Infoholic.statsToggledPressed = false;
+                statsToggledPressed = false;
             }
 
-            if (Infoholic.DisableDuringBattlePhase)
+            if (DisableDuringBattlePhase)
             {
                 Infoholic.statsToggledPressed = true;
             }
@@ -173,49 +171,55 @@ namespace Infoholic
         {
             TextMeshProUGUI textMeshProUGUI;
             MenuHandler.CreateText("Infoholic Settings (BETA)", menu, out textMeshProUGUI, 60, true, null, null, null, null);
-            Infoholic.bindButton = MenuHandler.CreateButton("SET TOGGLE STATS KEYBIND", menu, delegate ()
+            Infoholic.bindButton = MenuHandler.CreateButton("SET TOGGLE KEYBIND", menu, delegate ()
             {
                 this.detectKey = true;
             }, 35, true, null, null, null, null);
-            MenuHandler.CreateText("CURRENT TOGGLE STATS KEYBIND: ", menu, out Infoholic.keyText, 40, true, null, null, null, null);
+            MenuHandler.CreateText("CURRENT TOGGLE KEYBIND: ", menu, out Infoholic.keyText, 40, true, null, null, null, null);
             GameObject toggle = MenuHandler.CreateToggle(Infoholic.SettingsEnableMod, "<b><color=#09ff00>Enable Mod</color></b>", menu, delegate(bool value)
             {
-                if (inGame & inPick & !DisableDuringPickPhase)
+                Infoholic.SettingsEnableMod = value;
+
+                if (inGame & SettingsEnableMod)
                 {
                     GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
-                    InfoholicDebug.Log($"[{Infoholic.ModInitials}] MENU PULLED UP since you are in game, are in pick phase, and have disable during pick phase off.");
+                    Infoholic.statsToggledPressed = false;
                 }
 
-                if (inGame & inBattle & !DisableDuringBattlePhase)
-                {
-                    GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
-                    InfoholicDebug.Log($"[{Infoholic.ModInitials}] MENU PULLED UP since you are in game, are in battle phase, and have disable during battle phase off.");
-                }
-
-                if (!inGame & inSettings)
+                if (!inGame & SettingsEnableMod)
                 {
                     SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
+                    Infoholic.previewStatsToggledPressed = false;
                     InfoholicDebug.Log($"[{Infoholic.ModInitials}] SETTINGS PREVIEW PULLED UP since you are NOT in game, and are in the settings menu.");
                 }
-
-                Infoholic.SettingsEnableMod = value;
             }, 50, true, null, null, null, null);
             GameObject toggle2 = MenuHandler.CreateToggle(Infoholic.DisableDuringPickPhase, "Auto hide during pick phase", menu, delegate(bool value)
             {
-                if (inPick)
+                Infoholic.DisableDuringPickPhase = value;
+
+                if (inPick & DisableDuringPickPhase)
                 {
-                    GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
+                    Infoholic.statsToggledPressed = true;
                 }
 
-                Infoholic.DisableDuringPickPhase = value;
+                if (inPick & !DisableDuringPickPhase)
+                {
+                    Infoholic.statsToggledPressed = false;
+                }
             }, 50, true, null, null, null, null);
             GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Auto hide during battle phase", menu, delegate (bool value)
             {
-                if (inBattle)
-                {
-                    GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
-                }
                 Infoholic.DisableDuringBattlePhase = value;
+
+                if (inBattle & DisableDuringBattlePhase)
+                {
+                    Infoholic.statsToggledPressed = true;
+                }
+
+                if (inBattle & !DisableDuringBattlePhase)
+                {
+                    Infoholic.statsToggledPressed = false;
+                }
             }, 50, true, null, null, null, null);
             Slider opacitySlider;
             MenuHandler.CreateSlider("Text Opacity", menu, 50, 0f, 1f, Infoholic.Opacity, delegate(float value)
@@ -264,11 +268,13 @@ namespace Infoholic
             }, 50, true, null, null, null, null);
             menu.GetComponentInChildren<GoBack>(true).goBackEvent.AddListener(delegate ()
             {
+                Infoholic.previewStatsToggledPressed = false;
                 Infoholic.inSettings = false;
                 InfoholicDebug.Log($"[{Infoholic.ModInitials}] MENU CLOSED");
             });
             menu.transform.Find("Group/Back").gameObject.GetComponent<Button>().onClick.AddListener(delegate ()
             {
+                Infoholic.previewStatsToggledPressed = false;
                 Infoholic.inSettings = false;
                 InfoholicDebug.Log($"[{Infoholic.ModInitials}] MENU CLOSED");
             });
@@ -297,9 +303,19 @@ namespace Infoholic
 
             if (!this.haveDetectedKey && Infoholic.keyText != null && Infoholic.bindButton != null)
             {
-                Infoholic.keyText.text = "CURRENT TOGGLE STATS KEYBIND: " + Enum.GetName(typeof(KeyCode), Infoholic.DetectedKey);
-                Infoholic.bindButton.GetComponentInChildren<TextMeshProUGUI>().text = "SET TOGGLE STATS KEYBIND";
+                Infoholic.keyText.text = "CURRENT TOGGLE KEYBIND: " + Enum.GetName(typeof(KeyCode), Infoholic.DetectedKey);
+                Infoholic.bindButton.GetComponentInChildren<TextMeshProUGUI>().text = "SET TOGGLE KEYBIND";
                 this.haveDetectedKey = true;
+            }
+
+            checkIfInGame();
+        }
+
+        private void checkIfInGame()
+        {
+            if (!GameManager.instance.isPlaying && inGame)
+            {
+                inGame = false;
             }
         }
 
@@ -307,11 +323,11 @@ namespace Infoholic
         {
             get
             {
-                return (KeyCode)PlayerPrefs.GetInt(Infoholic.GetConfigKey("keycode"), 111);
+                return (KeyCode)PlayerPrefs.GetInt(Infoholic.GetConfigKey("keybindcode"), 111);
             }
             set
             {
-                PlayerPrefs.SetInt(Infoholic.GetConfigKey("keycode"), (int)value);
+                PlayerPrefs.SetInt(Infoholic.GetConfigKey("keybindcode"), (int)value);
             }
         }
 

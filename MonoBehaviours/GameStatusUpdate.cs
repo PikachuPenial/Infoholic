@@ -202,13 +202,6 @@ namespace Infoholic.MonoBehaviours
         public void Update()
         {
             {
-                if (Infoholic.inSandbox & Infoholic.inSandboxStatsSpawned)
-                {
-                    player = getLocalPlayer();
-                    gun = getLocalPlayerGun();
-                    block = getLocalPlayerBlock();
-                }
-
                 if (Infoholic.SettingsEnableMod)
                 {
                     healthText.text = $"Health: [{player.data.health:f0} / {player.data.maxHealth:f0}]";
@@ -282,11 +275,6 @@ namespace Infoholic.MonoBehaviours
                 }
 
                 if (!Infoholic.inGame)
-                {
-                    Destroy(this.gameObject);
-                }
-
-                if (Infoholic.inSettings & !Infoholic.inGame)
                 {
                     Destroy(this.gameObject);
                 }

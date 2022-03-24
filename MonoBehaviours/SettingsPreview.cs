@@ -249,6 +249,11 @@ namespace Infoholic.MonoBehaviours
                     ToggleOn();
                 }
 
+                if (Infoholic.inGame)
+                {
+                    Destroy(this.gameObject);
+                }
+
                 if (!Infoholic.SettingsEnableMod)
                 {
                     Destroy(this.gameObject);
@@ -263,9 +268,9 @@ namespace Infoholic.MonoBehaviours
 
         private void ToggleOn()
         {
-            if (!Infoholic.statsToggledPressed)
+            if (!Infoholic.previewStatsToggledPressed)
             {
-                Infoholic.statsToggledPressed = true;
+                Infoholic.previewStatsToggledPressed = true;
             }
             else
             {
@@ -275,9 +280,9 @@ namespace Infoholic.MonoBehaviours
 
         private void ToggleOff()
         {
-            if (Infoholic.statsToggledPressed)
+            if (Infoholic.previewStatsToggledPressed)
             {
-                Infoholic.statsToggledPressed = false;
+                Infoholic.previewStatsToggledPressed = false;
             }
         }
 
@@ -326,12 +331,12 @@ namespace Infoholic.MonoBehaviours
 
         private void UpdateTextScale()
         {
-            if (!Infoholic.statsToggledPressed)
+            if (!Infoholic.previewStatsToggledPressed)
             {
                 Infoholic.statsToggled = .4f;
             }
 
-            if (Infoholic.statsToggledPressed)
+            if (Infoholic.previewStatsToggledPressed)
             {
                 Infoholic.statsToggled = 0f;
             }
