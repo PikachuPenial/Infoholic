@@ -7,6 +7,32 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 1.0.0</summary>
+<br>
+
+Released on <i>3/30/2022</i>
+
+
+A simplicity toggle that is enabled by default, removes most of the stats, and looks much less intimidating.
+
+Added Player Gravity, Player Size, and Additional Blocks.
+
+---
+</details>
+
+<details>
+<summary>Version 0.0.4</summary>
+<br>
+
+Released on <i>3/24/2022</i>
+
+
+Bug fixes regarding the settings preview.
+
+---
+</details>
+
+<details>
 <summary>Version 0.0.3</summary>
 <br>
 

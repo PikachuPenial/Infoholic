@@ -16,7 +16,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "0.0.4")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "1.0.0")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -25,12 +25,12 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "0.0.4";
+        public const string Version = "1.0.0";
         private const string CompatibilityModName = "Infoholic";
 
         private static TextMeshProUGUI keyText;
 
-        private static GameObject bindButton;
+        private static GameObject button;
 
         public static bool inGame;
         public static bool inPick;
@@ -171,12 +171,12 @@ namespace Infoholic
         {
             TextMeshProUGUI textMeshProUGUI;
             MenuHandler.CreateText("Infoholic Settings (BETA)", menu, out textMeshProUGUI, 60, true, null, null, null, null);
-            Infoholic.bindButton = MenuHandler.CreateButton("SET TOGGLE KEYBIND", menu, delegate ()
+            Infoholic.button = MenuHandler.CreateButton("SET TOGGLE KEYBIND", menu, delegate ()
             {
                 this.detectKey = true;
             }, 35, true, null, null, null, null);
-            MenuHandler.CreateText("CURRENT TOGGLE KEYBIND: ", menu, out Infoholic.keyText, 40, true, null, null, null, null);
-            GameObject toggle = MenuHandler.CreateToggle(Infoholic.SettingsEnableMod, "<b><color=#09ff00>Enable Mod</color></b>", menu, delegate(bool value)
+            //MenuHandler.CreateText("CURRENT TOGGLE KEYBIND: ", menu, out Infoholic.keyText, 40, true, null, null, null, null);
+            GameObject toggle = MenuHandler.CreateToggle(Infoholic.SettingsEnableMod, "<b><color=#09ff00>Enable</color></b> Mod", menu, delegate(bool value)
             {
                 Infoholic.SettingsEnableMod = value;
 
@@ -193,7 +193,11 @@ namespace Infoholic
                     InfoholicDebug.Log($"[{Infoholic.ModInitials}] SETTINGS PREVIEW PULLED UP since you are NOT in game, and are in the settings menu.");
                 }
             }, 50, true, null, null, null, null);
-            GameObject toggle2 = MenuHandler.CreateToggle(Infoholic.DisableDuringPickPhase, "Auto hide during pick phase", menu, delegate(bool value)
+            GameObject toggle2 = MenuHandler.CreateToggle(Infoholic.SimpleMode, "<b><color=#00e5ff>Simplistic</color></b> Mode", menu, delegate (bool value)
+            {
+                Infoholic.SimpleMode = value;
+            }, 50, true, null, null, null, null);
+            GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringPickPhase, "Auto hide during pick phase", menu, delegate(bool value)
             {
                 Infoholic.DisableDuringPickPhase = value;
 
@@ -207,7 +211,7 @@ namespace Infoholic
                     Infoholic.statsToggledPressed = false;
                 }
             }, 50, true, null, null, null, null);
-            GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Auto hide during battle phase", menu, delegate (bool value)
+            GameObject toggle4 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Auto hide during battle phase", menu, delegate (bool value)
             {
                 Infoholic.DisableDuringBattlePhase = value;
 
@@ -260,8 +264,6 @@ namespace Infoholic
                 fontSpacingSlider.value = Infoholic.FontSpacing;
 
             }, 40, true, null, null, null, null);
-            MenuHandler.CreateText("<b><color=#ff0000>^^</color></b>(Some of these settings could potentially break your game, requiring a restart.)<b><color=#ff0000>^^</color></b>", menu, out textMeshProUGUI, 20, true, null, null, null, null);
-            MenuHandler.CreateText("<b>(PLEASE report all bugs to Penial#3298 on discord!)</b>", menu, out textMeshProUGUI, 20, true, null, null, null, null);
             GameObject toggledebug = MenuHandler.CreateToggle(Infoholic.DebugMode, "<b>DEBUG MODE</b>", menu, delegate (bool value)
             {
                 Infoholic.DebugMode = value;
@@ -293,18 +295,17 @@ namespace Infoholic
                         this.detectKey = false;
                     }
                 }
-                if (Infoholic.bindButton != null)
+                if (Infoholic.button != null)
                 {
-                    Infoholic.bindButton.GetComponentInChildren<TextMeshProUGUI>().text = "PRESS ANY KEY";
+                    Infoholic.button.GetComponentInChildren<TextMeshProUGUI>().text = "Press any key...";
                 }
                 this.haveDetectedKey = false;
                 return;
             }
-
-            if (!this.haveDetectedKey && Infoholic.keyText != null && Infoholic.bindButton != null)
+            if (!this.haveDetectedKey && Infoholic.keyText != null && Infoholic.button != null)
             {
                 Infoholic.keyText.text = "CURRENT TOGGLE KEYBIND: " + Enum.GetName(typeof(KeyCode), Infoholic.DetectedKey);
-                Infoholic.bindButton.GetComponentInChildren<TextMeshProUGUI>().text = "SET TOGGLE KEYBIND";
+                Infoholic.button.GetComponentInChildren<TextMeshProUGUI>().text = "SET TOGGLE KEYBIND";
                 this.haveDetectedKey = true;
             }
 
@@ -340,6 +341,18 @@ namespace Infoholic
             set
             {
                 PlayerPrefs.SetInt(Infoholic.GetConfigKey("SettingsEnableMod"), value ? 1 : 0);
+            }
+        }
+
+        public static bool SimpleMode
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(Infoholic.GetConfigKey("SimpleMode"), 1) == 1;
+            }
+            set
+            {
+                PlayerPrefs.SetInt(Infoholic.GetConfigKey("SimpleMode"), value ? 1 : 0);
             }
         }
 
