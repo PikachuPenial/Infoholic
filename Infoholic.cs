@@ -16,7 +16,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "1.0.0")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "1.0.1")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -25,7 +25,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "1.0.0";
+        public const string Version = "1.0.1";
         private const string CompatibilityModName = "Infoholic";
 
         private static TextMeshProUGUI keyText;
@@ -57,7 +57,7 @@ namespace Infoholic
 
         void Start()
         {
-            Unbound.RegisterCredits("<b><color=#09ff00>I</color>nfo<color=#ff0000>h</color>olic</b> (BETA)", new string[]
+            Unbound.RegisterCredits("<b><color=#09ff00>I</color>nfo<color=#ff0000>h</color>olic</b>", new string[]
             {
                 "Penial"
             }, new string[]
@@ -70,7 +70,7 @@ namespace Infoholic
                 "https://steamcommunity.com/id/penialsteamlol",
             });
 
-            Unbound.RegisterMenu("<b>Infoholic Settings (BETA)</b>", delegate ()
+            Unbound.RegisterMenu("<b>Infoholic Settings</b>", delegate ()
             {
                 inSettings = true;
                 previewStatsToggledPressed = false;
@@ -170,7 +170,7 @@ namespace Infoholic
         private void NewGUI(GameObject menu)
         {
             TextMeshProUGUI textMeshProUGUI;
-            MenuHandler.CreateText("Infoholic Settings (BETA)", menu, out textMeshProUGUI, 60, true, null, null, null, null);
+            MenuHandler.CreateText("Infoholic Settings", menu, out textMeshProUGUI, 60, true, null, null, null, null);
             Infoholic.button = MenuHandler.CreateButton("SET TOGGLE KEYBIND", menu, delegate ()
             {
                 this.detectKey = true;
@@ -241,12 +241,12 @@ namespace Infoholic
                 Infoholic.FontSpacing = value;
             }, out fontSpacingSlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textX;
-            MenuHandler.CreateSlider("Text X Offset", menu, 50, -50f, 50f, (float)Infoholic.TextX, delegate(float value)
+            MenuHandler.CreateSlider("Text X Offset", menu, 50, -75f, 75f, (float)Infoholic.TextX, delegate(float value)
             {
                 Infoholic.TextX = (int)value;
             }, out textX, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textY;
-            MenuHandler.CreateSlider("Text Y Offset", menu, 50, -50f, 50f, (float)Infoholic.TextY, delegate(float value)
+            MenuHandler.CreateSlider("Text Y Offset", menu, 50, -75f, 75f, (float)Infoholic.TextY, delegate(float value)
             {
                 Infoholic.TextY = (int)value;
             }, out textY, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);

@@ -21,7 +21,7 @@ namespace Infoholic.MonoBehaviours
     internal class GameStatusUpdate : MonoBehaviour
     {
         private static TextMeshProUGUI
-            healthText, livesText, blockCooldownText, blockCountText, movementSpeedText, jumpHeightText, playerGravityText, playerSizeText,
+            healthText, livesText, blockCooldownText, blockCountText, movementSpeedText, jumpHeightText, jumpCountText, playerSizeText,
             damageText, knockbackText, lifeStealText, bulletGrowthText, bulletSlowText, attackSpeedText, projectileSpeedText,
             projectileSimulationSpeedText, reloadTimeText, bulletGravityText, ammoText,
             bulletsText, rangeText, reflectsText, burstsText;
@@ -133,12 +133,12 @@ namespace Infoholic.MonoBehaviours
             jumpHeightText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             jumpHeightText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
 
-            // Player Gravity
-            playerGravityText = new GameObject().AddComponent<TextMeshProUGUI>();
-            playerGravityText.gameObject.AddComponent<DestroyOnUnparent>();
-            playerGravityText.transform.parent = gameObject.transform;
-            playerGravityText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            playerGravityText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            // Jump Count
+            jumpCountText = new GameObject().AddComponent<TextMeshProUGUI>();
+            jumpCountText.gameObject.AddComponent<DestroyOnUnparent>();
+            jumpCountText.transform.parent = gameObject.transform;
+            jumpCountText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
+            jumpCountText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
 
             // Player Size
             playerSizeText = new GameObject().AddComponent<TextMeshProUGUI>();
@@ -234,7 +234,7 @@ namespace Infoholic.MonoBehaviours
                     blockCooldownText.text = $"Block Cooldown: [{block.Cooldown():f2}]";
                     blockCooldownText.alpha = Infoholic.Opacity;
                     blockCooldownText.fontSize = Infoholic.FontSize;
-                    blockCountText.text = $"Block Count: [{block.additionalBlocks:f0}]";
+                    blockCountText.text = $"Block Count: [{block.additionalBlocks + 1:f0}]";
                     blockCountText.alpha = Infoholic.Opacity;
                     blockCountText.fontSize = Infoholic.FontSize;
                     movementSpeedText.text = $"Movement Speed: [{player.data.stats.movementSpeed:f2}]";
@@ -243,9 +243,9 @@ namespace Infoholic.MonoBehaviours
                     jumpHeightText.text = $"Jump Height: [{player.data.stats.jump:f2}]";
                     jumpHeightText.alpha = Infoholic.Opacity;
                     jumpHeightText.fontSize = Infoholic.FontSize;
-                    playerGravityText.text = $"Player Gravity: [{player.data.stats.gravity:f2}]";
-                    playerGravityText.alpha = Infoholic.Opacity;
-                    playerGravityText.fontSize = Infoholic.FontSize;
+                    jumpCountText.text = $"Jump Count: [{player.data.stats.numberOfJumps + 1:f0}]";
+                    jumpCountText.alpha = Infoholic.Opacity;
+                    jumpCountText.fontSize = Infoholic.FontSize;
                     playerSizeText.text = $"Player Size: [{player.data.stats.sizeMultiplier:f2}]";
                     playerSizeText.alpha = Infoholic.Opacity;
                     playerSizeText.fontSize = Infoholic.FontSize;
@@ -377,7 +377,7 @@ namespace Infoholic.MonoBehaviours
 
                 jumpHeightText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -17f + Infoholic.TextY + (Infoholic.FontSpacing * 12), 0f);
 
-                playerGravityText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -18f + Infoholic.TextY + (Infoholic.FontSpacing * 11), 0f);
+                jumpCountText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -18f + Infoholic.TextY + (Infoholic.FontSpacing * 11), 0f);
 
                 playerSizeText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -19f + Infoholic.TextY + (Infoholic.FontSpacing * 10), 0f);
 
@@ -439,7 +439,7 @@ namespace Infoholic.MonoBehaviours
 
                 jumpHeightText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
 
-                playerGravityText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
+                jumpCountText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
 
                 playerSizeText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
 
@@ -488,7 +488,7 @@ namespace Infoholic.MonoBehaviours
 
                 jumpHeightText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
-                playerGravityText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
+                jumpCountText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
                 playerSizeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 

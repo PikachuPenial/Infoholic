@@ -7,6 +7,20 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 1.0.1</summary>
+<br>
+
+Released on <i>4/8/2022</i>
+
+
+Removed BETA text around the menus.
+
+Increased the max values for offsets.
+
+---
+</details>
+
+<details>
 <summary>Version 1.0.0</summary>
 <br>
 
@@ -15,7 +29,7 @@ Released on <i>3/30/2022</i>
 
 A simplicity toggle that is enabled by default, removes most of the stats, and looks much less intimidating.
 
-Added Player Gravity, Player Size, and Additional Blocks.
+Added Jump Count, Player Size, and Additional Blocks.
 
 ---
 </details>
