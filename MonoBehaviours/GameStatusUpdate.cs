@@ -60,63 +60,63 @@ namespace Infoholic.MonoBehaviours
             healthText.gameObject.AddComponent<DestroyOnUnparent>();
             healthText.transform.parent = gameObject.transform;
             healthText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            healthText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            healthText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Lives
             livesText = new GameObject().AddComponent<TextMeshProUGUI>();
             livesText.gameObject.AddComponent<DestroyOnUnparent>();
             livesText.transform.parent = gameObject.transform;
             livesText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            livesText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            livesText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Block Cooldown
             blockCooldownText = new GameObject().AddComponent<TextMeshProUGUI>();
             blockCooldownText.gameObject.AddComponent<DestroyOnUnparent>();
             blockCooldownText.transform.parent = gameObject.transform;
             blockCooldownText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            blockCooldownText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            blockCooldownText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Additional Blocks
             blockCountText = new GameObject().AddComponent<TextMeshProUGUI>();
             blockCountText.gameObject.AddComponent<DestroyOnUnparent>();
             blockCountText.transform.parent = gameObject.transform;
             blockCountText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            blockCountText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            blockCountText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Damage
             damageText = new GameObject().AddComponent<TextMeshProUGUI>();
             damageText.gameObject.AddComponent<DestroyOnUnparent>();
             damageText.transform.parent = gameObject.transform;
             damageText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            damageText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            damageText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Knockback
             knockbackText = new GameObject().AddComponent<TextMeshProUGUI>();
             knockbackText.gameObject.AddComponent<DestroyOnUnparent>();
             knockbackText.transform.parent = gameObject.transform;
             knockbackText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            knockbackText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            knockbackText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Life Steal
             lifeStealText = new GameObject().AddComponent<TextMeshProUGUI>();
             lifeStealText.gameObject.AddComponent<DestroyOnUnparent>();
             lifeStealText.transform.parent = gameObject.transform;
             lifeStealText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            lifeStealText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            lifeStealText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bullet Growth
             bulletGrowthText = new GameObject().AddComponent<TextMeshProUGUI>();
             bulletGrowthText.gameObject.AddComponent<DestroyOnUnparent>();
             bulletGrowthText.transform.parent = gameObject.transform;
             bulletGrowthText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            bulletGrowthText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            bulletGrowthText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bullet Slow
             bulletSlowText = new GameObject().AddComponent<TextMeshProUGUI>();
             bulletSlowText.gameObject.AddComponent<DestroyOnUnparent>();
             bulletSlowText.transform.parent = gameObject.transform;
             bulletSlowText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            bulletSlowText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            bulletSlowText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
 
             // Movement Speed
@@ -124,98 +124,98 @@ namespace Infoholic.MonoBehaviours
             movementSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
             movementSpeedText.transform.parent = gameObject.transform;
             movementSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            movementSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            movementSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Jump Height
             jumpHeightText = new GameObject().AddComponent<TextMeshProUGUI>();
             jumpHeightText.gameObject.AddComponent<DestroyOnUnparent>();
             jumpHeightText.transform.parent = gameObject.transform;
             jumpHeightText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            jumpHeightText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            jumpHeightText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Jump Count
             jumpCountText = new GameObject().AddComponent<TextMeshProUGUI>();
             jumpCountText.gameObject.AddComponent<DestroyOnUnparent>();
             jumpCountText.transform.parent = gameObject.transform;
             jumpCountText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            jumpCountText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            jumpCountText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Player Size
             playerSizeText = new GameObject().AddComponent<TextMeshProUGUI>();
             playerSizeText.gameObject.AddComponent<DestroyOnUnparent>();
             playerSizeText.transform.parent = gameObject.transform;
             playerSizeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            playerSizeText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            playerSizeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Attack Speed
             attackSpeedText = new GameObject().AddComponent<TextMeshProUGUI>();
             attackSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
             attackSpeedText.transform.parent = gameObject.transform;
             attackSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            attackSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            attackSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Projectile Speed
             projectileSpeedText = new GameObject().AddComponent<TextMeshProUGUI>();
             projectileSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
             projectileSpeedText.transform.parent = gameObject.transform;
             projectileSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            projectileSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            projectileSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Projectile Simulation Speed
             projectileSimulationSpeedText = new GameObject().AddComponent<TextMeshProUGUI>();
             projectileSimulationSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
             projectileSimulationSpeedText.transform.parent = gameObject.transform;
             projectileSimulationSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            projectileSimulationSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            projectileSimulationSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Reload Time
             reloadTimeText = new GameObject().AddComponent<TextMeshProUGUI>();
             reloadTimeText.gameObject.AddComponent<DestroyOnUnparent>();
             reloadTimeText.transform.parent = gameObject.transform;
             reloadTimeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            reloadTimeText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            reloadTimeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bullet Gravity
             bulletGravityText = new GameObject().AddComponent<TextMeshProUGUI>();
             bulletGravityText.gameObject.AddComponent<DestroyOnUnparent>();
             bulletGravityText.transform.parent = gameObject.transform;
             bulletGravityText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            bulletGravityText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            bulletGravityText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Ammo
             ammoText = new GameObject().AddComponent<TextMeshProUGUI>();
             ammoText.gameObject.AddComponent<DestroyOnUnparent>();
             ammoText.transform.parent = gameObject.transform;
             ammoText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            ammoText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            ammoText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bullets
             bulletsText = new GameObject().AddComponent<TextMeshProUGUI>();
             bulletsText.gameObject.AddComponent<DestroyOnUnparent>();
             bulletsText.transform.parent = gameObject.transform;
             bulletsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            bulletsText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            bulletsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bullet Range
             rangeText = new GameObject().AddComponent<TextMeshProUGUI>();
             rangeText.gameObject.AddComponent<DestroyOnUnparent>();
             rangeText.transform.parent = gameObject.transform;
             rangeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            rangeText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            rangeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Reflects
             reflectsText = new GameObject().AddComponent<TextMeshProUGUI>();
             reflectsText.gameObject.AddComponent<DestroyOnUnparent>();
             reflectsText.transform.parent = gameObject.transform;
             reflectsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            reflectsText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            reflectsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bursts
             burstsText = new GameObject().AddComponent<TextMeshProUGUI>();
             burstsText.gameObject.AddComponent<DestroyOnUnparent>();
             burstsText.transform.parent = gameObject.transform;
             burstsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            burstsText.gameObject.AddComponent<Canvas>().sortingLayerName = "Player10";
+            burstsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             UpdateTextPosition();
         }

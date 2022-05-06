@@ -7,6 +7,30 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 1.0.3</summary>
+<br>
+
+Released on <i>5/6/2022</i>
+
+
+Text now draws over game objects (things like parts of the map, or cards during the pick phase.)
+
+---
+</details>
+
+<details>
+<summary>Version 1.0.2</summary>
+<br>
+
+Released on <i>4/29/2022</i>
+
+
+Removed BETA text from the readme.
+
+---
+</details>
+
+<details>
 <summary>Version 1.0.1</summary>
 <br>
 
