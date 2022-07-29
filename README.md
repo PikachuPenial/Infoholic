@@ -7,6 +7,22 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 1.1.0</summary>
+<br>
+
+Released on <i>7/28/2022</i>
+
+
+Damage is now calculated correctly and takes damage multipliers into account.
+
+Removed jump count as a shown stat.
+
+Updated BepinEx.
+
+---
+</details>
+
+<details>
 <summary>Version 1.0.3</summary>
 <br>
 

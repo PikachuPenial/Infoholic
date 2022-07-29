@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
@@ -16,7 +18,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "1.0.3")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "1.1.0")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -25,7 +27,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "1.0.3";
+        public const string Version = "1.1.0";
         private const string CompatibilityModName = "Infoholic";
 
         private static TextMeshProUGUI keyText;
@@ -57,6 +59,10 @@ namespace Infoholic
 
         void Start()
         {
+            var plugins = (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
+            //willsWackyCards = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.willuwontu.rounds.cards");
+            //classesManagerReborn = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "root.classes.manager.reborn");
+
             Unbound.RegisterCredits("<b><color=#09ff00>I</color>nfo<color=#ff0000>h</color>olic</b>", new string[]
             {
                 "Penial"
