@@ -18,7 +18,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "1.1.0")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "1.2.0")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -27,11 +27,11 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "1.1.0";
+        public const string Version = "1.2.0";
         private const string CompatibilityModName = "Infoholic";
+        public static bool DebugMode = false;
 
         private static TextMeshProUGUI keyText;
-
         private static GameObject button;
 
         public static bool inGame;
@@ -44,7 +44,6 @@ namespace Infoholic
 
         public static bool statsToggledPressed;
         public static bool previewStatsToggledPressed;
-
         public static float statsToggled;
 
         public static Infoholic instance { get; private set; }
@@ -59,9 +58,15 @@ namespace Infoholic
 
         void Start()
         {
-            var plugins = (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
+            //var plugins = (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
             //willsWackyCards = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.willuwontu.rounds.cards");
             //classesManagerReborn = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "root.classes.manager.reborn");
+            //mapEmbiggener = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "pykess.rounds.plugins.mapembiggener");
+
+            //if (mapEmbiggener == true)
+            //{
+                //InfoholicDebug.Log($"[{Infoholic.ModInitials}] Map Embiggener is enabled, setting up support.");
+            //}
 
             Unbound.RegisterCredits("<b><color=#09ff00>I</color>nfo<color=#ff0000>h</color>olic</b>", new string[]
             {
@@ -73,10 +78,10 @@ namespace Infoholic
             }, new string[]
             {
                 "https://github.com/PikachuPenial/Infoholic",
-                "https://steamcommunity.com/id/penialsteamlol",
+                "https://steamcommunity.com/id/penialsteam",
             });
 
-            Unbound.RegisterMenu("<b>Infoholic Settings</b>", delegate ()
+            Unbound.RegisterMenu("Infoholic Settings", delegate ()
             {
                 inSettings = true;
                 previewStatsToggledPressed = false;
@@ -86,7 +91,7 @@ namespace Infoholic
                     SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
                 }
 
-            }, new Action<GameObject>(this.NewGUI), null, true);
+            }, new Action<GameObject>(this.NewGUI), null, false);
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, this.GameStart);
             GameModeManager.AddHook(GameModeHooks.HookGameEnd, this.GameEnd);
@@ -176,12 +181,12 @@ namespace Infoholic
         private void NewGUI(GameObject menu)
         {
             TextMeshProUGUI textMeshProUGUI;
-            MenuHandler.CreateText("Infoholic Settings", menu, out textMeshProUGUI, 60, true, null, null, null, null);
+            MenuHandler.CreateText("INFOHOLIC SETTINGS", menu, out textMeshProUGUI, 60, true, null, null, null, null);
             Infoholic.button = MenuHandler.CreateButton("SET TOGGLE KEYBIND", menu, delegate ()
             {
                 this.detectKey = true;
             }, 35, true, null, null, null, null);
-            //MenuHandler.CreateText("CURRENT TOGGLE KEYBIND: ", menu, out Infoholic.keyText, 40, true, null, null, null, null);
+            MenuHandler.CreateText("CURRENT TOGGLE KEYBIND: ", menu, out Infoholic.keyText, 40, true, null, null, null, null);
             GameObject toggle = MenuHandler.CreateToggle(Infoholic.SettingsEnableMod, "<b><color=#09ff00>Enable</color></b> Mod", menu, delegate(bool value)
             {
                 Infoholic.SettingsEnableMod = value;
@@ -199,11 +204,11 @@ namespace Infoholic
                     InfoholicDebug.Log($"[{Infoholic.ModInitials}] SETTINGS PREVIEW PULLED UP since you are NOT in game, and are in the settings menu.");
                 }
             }, 50, true, null, null, null, null);
-            GameObject toggle2 = MenuHandler.CreateToggle(Infoholic.SimpleMode, "<b><color=#00e5ff>Simplistic</color></b> Mode", menu, delegate (bool value)
+            GameObject toggle2 = MenuHandler.CreateToggle(Infoholic.SimpleMode, "<b><color=#00e5ff>Simplistic</color></b> Mode (less stats)", menu, delegate (bool value)
             {
                 Infoholic.SimpleMode = value;
             }, 50, true, null, null, null, null);
-            GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringPickPhase, "Auto hide during pick phase", menu, delegate(bool value)
+            GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringPickPhase, "Hide during pick phase", menu, delegate(bool value)
             {
                 Infoholic.DisableDuringPickPhase = value;
 
@@ -217,7 +222,7 @@ namespace Infoholic
                     Infoholic.statsToggledPressed = false;
                 }
             }, 50, true, null, null, null, null);
-            GameObject toggle4 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Auto hide during battle phase", menu, delegate (bool value)
+            GameObject toggle4 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Hide during battle phase", menu, delegate (bool value)
             {
                 Infoholic.DisableDuringBattlePhase = value;
 
@@ -231,32 +236,34 @@ namespace Infoholic
                     Infoholic.statsToggledPressed = false;
                 }
             }, 50, true, null, null, null, null);
+            GameObject colorMenu = MenuHandler.CreateMenu("COLOR SETTINGS", () => { }, menu, 48, true, true, menu.transform.parent.gameObject);
+            ColorSettingsGUI(colorMenu);
             Slider opacitySlider;
-            MenuHandler.CreateSlider("Text Opacity", menu, 50, 0f, 1f, Infoholic.Opacity, delegate(float value)
+            MenuHandler.CreateSlider("Opacity", menu, 50, 0f, 1f, Infoholic.Opacity, delegate(float value)
             {
                 Infoholic.Opacity = value;
             }, out opacitySlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider fontSizeSlider;
-            MenuHandler.CreateSlider("Text Size", menu, 50, 0f, 5f, Infoholic.FontSize, delegate(float value)
+            MenuHandler.CreateSlider("Size", menu, 50, 0f, 5f, Infoholic.FontSize, delegate(float value)
             {
                 Infoholic.FontSize = value;
             }, out fontSizeSlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider fontSpacingSlider;
-            MenuHandler.CreateSlider("Text Spacing", menu, 50, -3f, 2f, Infoholic.FontSpacing, delegate (float value)
+            MenuHandler.CreateSlider("Spacing", menu, 50, -3f, 2f, Infoholic.FontSpacing, delegate (float value)
             {
                 Infoholic.FontSpacing = value;
             }, out fontSpacingSlider, false, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textX;
-            MenuHandler.CreateSlider("Text X Offset", menu, 50, -75f, 75f, (float)Infoholic.TextX, delegate(float value)
+            MenuHandler.CreateSlider("X Offset", menu, 50, -75f, 75f, (float)Infoholic.TextX, delegate(float value)
             {
                 Infoholic.TextX = (int)value;
             }, out textX, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);
             Slider textY;
-            MenuHandler.CreateSlider("Text Y Offset", menu, 50, -75f, 75f, (float)Infoholic.TextY, delegate(float value)
+            MenuHandler.CreateSlider("Y Offset", menu, 50, -75f, 75f, (float)Infoholic.TextY, delegate(float value)
             {
                 Infoholic.TextY = (int)value;
             }, out textY, true, null, Slider.Direction.LeftToRight, true, null, null, null, null);
-            MenuHandler.CreateButton("<b><color=#ff0000>Reset</color></b> all values", menu, delegate ()
+            MenuHandler.CreateButton("<b><color=#ff0000>Reset</color></b> all settings", menu, delegate ()
             {
                 Infoholic.TextX = 0;
                 Infoholic.TextY = 0;
@@ -268,12 +275,7 @@ namespace Infoholic
                 opacitySlider.value = Infoholic.Opacity;
                 fontSizeSlider.value = Infoholic.FontSize;
                 fontSpacingSlider.value = Infoholic.FontSpacing;
-
             }, 40, true, null, null, null, null);
-            GameObject toggledebug = MenuHandler.CreateToggle(Infoholic.DebugMode, "<b>DEBUG MODE</b>", menu, delegate (bool value)
-            {
-                Infoholic.DebugMode = value;
-            }, 50, true, null, null, null, null);
             menu.GetComponentInChildren<GoBack>(true).goBackEvent.AddListener(delegate ()
             {
                 Infoholic.previewStatsToggledPressed = false;
@@ -288,31 +290,34 @@ namespace Infoholic
             });
         }
 
+        private void ColorSettingsGUI(GameObject menu)
+        {
+            TextMeshProUGUI textMeshProUGUI;
+            MenuHandler.CreateText("INFOHOLIC COLOR SETTINGS", menu, out textMeshProUGUI, 60, true, null, null, null, null);
+        }
+
         private void Update()
         {
-            if (this.detectKey)
+            if (detectKey)
             {
-                foreach (object obj in Enum.GetValues(typeof(KeyCode)))
+                var values = Enum.GetValues(typeof(KeyCode));
+                foreach (KeyCode code in values)
                 {
-                    KeyCode keyCode = (KeyCode)obj;
-                    if (Input.GetKeyDown(keyCode))
+                    if (Input.GetKeyDown(code))
                     {
-                        Infoholic.DetectedKey = keyCode;
-                        this.detectKey = false;
+                        DetectedKey = code;
+                        detectKey = false;
                     }
                 }
-                if (Infoholic.button != null)
-                {
-                    Infoholic.button.GetComponentInChildren<TextMeshProUGUI>().text = "Press any key...";
-                }
-                this.haveDetectedKey = false;
-                return;
+
+                if (!(button is null)) button.GetComponentInChildren<TextMeshProUGUI>().text = "PRESS ANY KEY...";
+                haveDetectedKey = false;
             }
-            if (!this.haveDetectedKey && Infoholic.keyText != null && Infoholic.button != null)
+            else if (!haveDetectedKey && !(keyText is null) && !(button is null))
             {
-                Infoholic.keyText.text = "CURRENT TOGGLE KEYBIND: " + Enum.GetName(typeof(KeyCode), Infoholic.DetectedKey);
-                Infoholic.button.GetComponentInChildren<TextMeshProUGUI>().text = "SET TOGGLE KEYBIND";
-                this.haveDetectedKey = true;
+                keyText.text = "CURRENT TOGGLE KEYBIND: " + Enum.GetName(typeof(KeyCode), DetectedKey);
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "SET TOGGLE KEYBIND";
+                haveDetectedKey = true;
             }
 
             checkIfInGame();
@@ -383,18 +388,6 @@ namespace Infoholic
             set
             {
                 PlayerPrefs.SetInt(Infoholic.GetConfigKey("DisableDuringBattlePhase"), value ? 1 : 0);
-            }
-        }
-
-        public static bool DebugMode
-        {
-            get
-            {
-                return PlayerPrefs.GetInt(Infoholic.GetConfigKey("DebugMode"), 0) == 1;
-            }
-            set
-            {
-                PlayerPrefs.SetInt(Infoholic.GetConfigKey("DebugMode"), value ? 1 : 0);
             }
         }
 

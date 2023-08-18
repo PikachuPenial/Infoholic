@@ -34,7 +34,7 @@ namespace Infoholic.MonoBehaviours
             healthText.gameObject.AddComponent<DestroyOnUnparent>();
             healthText.transform.parent = gameObject.transform;
             healthText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            healthText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
+            healthText.gameObject.AddComponent<Canvas>().sortingLayerName = "Default";
 
             // Lives
             livesText = new GameObject().AddComponent<TextMeshProUGUI>();
@@ -168,21 +168,21 @@ namespace Infoholic.MonoBehaviours
             rangeText.gameObject.AddComponent<DestroyOnUnparent>();
             rangeText.transform.parent = gameObject.transform;
             rangeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            rangeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
+            rangeText.gameObject.AddComponent<Canvas>().sortingLayerName = "IgnoreMap";
 
             // Reflects
             reflectsText = new GameObject().AddComponent<TextMeshProUGUI>();
             reflectsText.gameObject.AddComponent<DestroyOnUnparent>();
             reflectsText.transform.parent = gameObject.transform;
             reflectsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            reflectsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
+            reflectsText.gameObject.AddComponent<Canvas>().sortingLayerName = "IgnoreMap";
 
             // Bursts
             burstsText = new GameObject().AddComponent<TextMeshProUGUI>();
             burstsText.gameObject.AddComponent<DestroyOnUnparent>();
             burstsText.transform.parent = gameObject.transform;
             burstsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            burstsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
+            burstsText.gameObject.AddComponent<Canvas>().sortingLayerName = "IgnoreMap";
 
             UpdateTextPosition();
         }
@@ -192,7 +192,7 @@ namespace Infoholic.MonoBehaviours
             {
                 if (Infoholic.inSettings)
                 {
-                    healthText.text = "Health: [100 / 100]";
+                    healthText.text = "Health: [100/100]";
                     healthText.alpha = Infoholic.Opacity;
                     healthText.fontSize = Infoholic.FontSize;
                     livesText.text = "Lives: [1]";

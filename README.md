@@ -7,17 +7,38 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 1.2.0</summary>
+<br>
+
+Released on <i>8/17/2023</i>
+
+Current toggle keybind is now displayed in mod settings
+
+Added indicator when the keybind is being changed in mod settings
+
+Adjusted mod settings for better readability
+
+Updated Steam URL on the credits menu
+
+Mod settings can no longer be adjusted during gameplay
+
+Removed Debug Mode toggle from mod settings
+
+---
+</details>
+
+<details>
 <summary>Version 1.1.0</summary>
 <br>
 
 Released on <i>7/28/2022</i>
 
 
-Damage is now calculated correctly and takes damage multipliers into account.
+Damage is now calculated correctly and takes damage multipliers into account
 
-Removed jump count as a shown stat.
+Removed jump count as a shown stat
 
-Updated BepinEx.
+Updated BepinEx
 
 ---
 </details>
@@ -29,7 +50,7 @@ Updated BepinEx.
 Released on <i>5/6/2022</i>
 
 
-Text now draws over game objects (things like parts of the map, or cards during the pick phase.)
+Text now draws over game objects (things like parts of the map, or cards during the pick phase)
 
 ---
 </details>
@@ -41,7 +62,7 @@ Text now draws over game objects (things like parts of the map, or cards during 
 Released on <i>4/29/2022</i>
 
 
-Removed BETA text from the readme.
+Removed BETA text from the readme
 
 ---
 </details>
@@ -53,9 +74,9 @@ Removed BETA text from the readme.
 Released on <i>4/8/2022</i>
 
 
-Removed BETA text around the menus.
+Removed BETA text around the menus
 
-Increased the max values for offsets.
+Increased the max values for offsets
 
 ---
 </details>
@@ -67,9 +88,9 @@ Increased the max values for offsets.
 Released on <i>3/30/2022</i>
 
 
-A simplicity toggle that is enabled by default, removes most of the stats, and looks much less intimidating.
+A simplicity toggle that is enabled by default, removes most of the stats, and looks much less intimidating
 
-Added Jump Count, Player Size, and Additional Blocks.
+Added Jump Count, Player Size, and Additional Blocks
 
 ---
 </details>
@@ -81,7 +102,7 @@ Added Jump Count, Player Size, and Additional Blocks.
 Released on <i>3/24/2022</i>
 
 
-Bug fixes regarding the settings preview.
+Bug fixes regarding the settings preview
 
 ---
 </details>
@@ -93,13 +114,13 @@ Bug fixes regarding the settings preview.
 Released on <i>3/23/2022</i>
 
 
-Added a keybinding to disable the menu on the fly (O by default.)
+Added a keybinding to disable the menu on the fly (O by default)
 
-Centered the text better to the bottom left of the screen by default.
+Centered the text better to the bottom left of the screen by default
 
-Fixed bugs relating to the Settings Preview, shouldn't glitch out anymore.
+Fixed bugs relating to the Settings Preview, shouldn't glitch out anymore
 
-Fixed bugs with Disable during pick phase.
+Fixed bugs with Disable during pick phase
 
 ---
 </details>
@@ -111,9 +132,9 @@ Fixed bugs with Disable during pick phase.
 Released on <i>3/21/2022</i>
 
 
-Three new stats added.
+Three new stats added
 
-Fixed bugs when entering sandbox, mod still does not work in sandbox though, just no more console flooding :)
+Fixed bugs when entering sandbox, mod still does not work in sandbox though, just no more console flooding
 
 ---
 </details>
@@ -125,7 +146,7 @@ Fixed bugs when entering sandbox, mod still does not work in sandbox though, jus
 Released on <i>3/21/2022</i>
 
 
-Initial Beta release.
+Initial Beta release
 
 ---
 </details>
@@ -134,6 +155,6 @@ Initial Beta release.
 
 Thank you to the following people:
 
-Lillith - Helping me when my brain was on fire.
+Lillith - Helping with code
 
-Porty - Implementing text scaling.
+Portanator - Implementing text scaling
