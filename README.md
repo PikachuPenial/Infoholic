@@ -2,6 +2,8 @@
 
  A ROUNDS mod that shows you the important stats at all times!
 
+ Report issues or view source code on the [GitHub](https://github.com/PikachuPenial/Infoholic)
+
  ---
 
 <i>Patch Notes</i>
@@ -31,6 +33,8 @@ Added unit indicators on specific stats (mainly values displayed in seconds)
 Adjusted some stat names (Damage is now DMG, Block Cooldown is now Block CD, etc...)
 
 Adjusted layout of the stats (damage is now closer to the top)
+
+Improved text positioning on default settings
 
 Improved performance across the board
 
