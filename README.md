@@ -9,6 +9,17 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 2.0.2</summary>
+<br>
+
+Released on <i>8/18/2023</i>
+
+Fixed custom colors not applying when in-game
+
+---
+</details>
+
+<details>
 <summary>Version 2.0.1</summary>
 <br>
 
