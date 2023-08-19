@@ -9,6 +9,19 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 2.0.1</summary>
+<br>
+
+Released on <i>8/18/2023</i>
+
+Fixed the toggle keybind not functioning properly while in-game
+
+Updated UnboundLib to the latest version
+
+---
+</details>
+
+<details>
 <summary>Version 2.0.0</summary>
 <br>
 

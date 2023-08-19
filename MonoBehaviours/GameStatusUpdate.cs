@@ -397,12 +397,12 @@ namespace Infoholic.MonoBehaviours
 
         private void UpdateTextScale()
         {
-            if (!Infoholic.previewStatsToggledPressed)
+            if (!Infoholic.statsToggledPressed)
             {
                 Infoholic.statsToggled = .4f;
             }
 
-            if (Infoholic.previewStatsToggledPressed)
+            if (Infoholic.statsToggledPressed)
             {
                 Infoholic.statsToggled = 0f;
             }
