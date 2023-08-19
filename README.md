@@ -7,16 +7,32 @@
 <i>Patch Notes</i>
 
 <details>
-<summary>Version 1.2.0</summary>
+<summary>Version 2.0.0</summary>
 <br>
 
-Released on <i>8/17/2023</i>
+Released on <i>8/18/2023</i>
+
+New animated mod icon
+
+Added coloring options in the mod settings (presets and color sliders)
 
 Current toggle keybind is now displayed in mod settings
 
 Added indicator when the keybind is being changed in mod settings
 
+Added Bullet Speed and Projectile Speed stats to the simplistic mode setting
+
 Adjusted mod settings for better readability
+
+Removed brackets that surrounded stat values
+
+Added unit indicators on specific stats (mainly values displayed in seconds)
+
+Adjusted some stat names (Damage is now DMG, Block Cooldown is now Block CD, etc...)
+
+Adjusted layout of the stats (damage is now closer to the top)
+
+Improved performance across the board
 
 Updated Steam URL on the credits menu
 

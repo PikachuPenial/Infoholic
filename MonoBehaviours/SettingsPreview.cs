@@ -27,14 +27,14 @@ namespace Infoholic.MonoBehaviours
             projectileSimulationSpeedText, reloadTimeText, bulletGravityText, ammoText,
             bulletsText, rangeText, reflectsText, burstsText;
 
-        private void Start()
+        void Start()
         {
             // Health
             healthText = new GameObject().AddComponent<TextMeshProUGUI>();
             healthText.gameObject.AddComponent<DestroyOnUnparent>();
             healthText.transform.parent = gameObject.transform;
             healthText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            healthText.gameObject.AddComponent<Canvas>().sortingLayerName = "Default";
+            healthText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Lives
             livesText = new GameObject().AddComponent<TextMeshProUGUI>();
@@ -168,21 +168,21 @@ namespace Infoholic.MonoBehaviours
             rangeText.gameObject.AddComponent<DestroyOnUnparent>();
             rangeText.transform.parent = gameObject.transform;
             rangeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            rangeText.gameObject.AddComponent<Canvas>().sortingLayerName = "IgnoreMap";
+            rangeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Reflects
             reflectsText = new GameObject().AddComponent<TextMeshProUGUI>();
             reflectsText.gameObject.AddComponent<DestroyOnUnparent>();
             reflectsText.transform.parent = gameObject.transform;
             reflectsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            reflectsText.gameObject.AddComponent<Canvas>().sortingLayerName = "IgnoreMap";
+            reflectsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             // Bursts
             burstsText = new GameObject().AddComponent<TextMeshProUGUI>();
             burstsText.gameObject.AddComponent<DestroyOnUnparent>();
             burstsText.transform.parent = gameObject.transform;
             burstsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-            burstsText.gameObject.AddComponent<Canvas>().sortingLayerName = "IgnoreMap";
+            burstsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
 
             UpdateTextPosition();
         }
@@ -192,72 +192,72 @@ namespace Infoholic.MonoBehaviours
             {
                 if (Infoholic.inSettings)
                 {
-                    healthText.text = "Health: [100/100]";
-                    healthText.alpha = Infoholic.Opacity;
+                    healthText.text = "HP: 100 / 100";
                     healthText.fontSize = Infoholic.FontSize;
-                    livesText.text = "Lives: [1]";
-                    livesText.alpha = Infoholic.Opacity;
-                    livesText.fontSize = Infoholic.FontSize;
-                    blockCooldownText.text = "Block Cooldown: [4.00]";
-                    blockCooldownText.alpha = Infoholic.Opacity;
-                    blockCooldownText.fontSize = Infoholic.FontSize;
-                    blockCountText.text = "Block Count: [1]";
-                    blockCountText.alpha = Infoholic.Opacity;
-                    blockCountText.fontSize = Infoholic.FontSize;
-                    movementSpeedText.text = "Movement Speed: [1.00]";
-                    movementSpeedText.alpha = Infoholic.Opacity;
-                    movementSpeedText.fontSize = Infoholic.FontSize;
-                    jumpHeightText.text = "Jump Height: [1.00]";
-                    jumpHeightText.alpha = Infoholic.Opacity;
-                    jumpHeightText.fontSize = Infoholic.FontSize;
-                    playerSizeText.text = "Player Size: [1.00]";
-                    playerSizeText.alpha = Infoholic.Opacity;
-                    playerSizeText.fontSize = Infoholic.FontSize;
-                    damageText.text = "Damage: [55]";
-                    damageText.alpha = Infoholic.Opacity;
+                    healthText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    damageText.text = "DMG: 55";
                     damageText.fontSize = Infoholic.FontSize;
-                    knockbackText.text = "Knockback: [1.00]";
-                    knockbackText.alpha = Infoholic.Opacity;
+                    damageText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    livesText.text = "Lives: 1";
+                    livesText.fontSize = Infoholic.FontSize;
+                    livesText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    blockCooldownText.text = "Block CD: 4.00s";
+                    blockCooldownText.fontSize = Infoholic.FontSize;
+                    blockCooldownText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    blockCountText.text = "Block Count: 1";
+                    blockCountText.fontSize = Infoholic.FontSize;
+                    blockCountText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    movementSpeedText.text = "Move SPD: 1.00";
+                    movementSpeedText.fontSize = Infoholic.FontSize;
+                    movementSpeedText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    jumpHeightText.text = "Jump Height: 1.00";
+                    jumpHeightText.fontSize = Infoholic.FontSize;
+                    jumpHeightText.color =  new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    playerSizeText.text = "Player Size: 1.00";
+                    playerSizeText.fontSize = Infoholic.FontSize;
+                    playerSizeText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    knockbackText.text = "Knockback: 1.00";
                     knockbackText.fontSize = Infoholic.FontSize;
-                    lifeStealText.text = "Life Steal: [0.00]";
-                    lifeStealText.alpha = Infoholic.Opacity;
+                    knockbackText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    lifeStealText.text = "Life Steal: 0.00";
                     lifeStealText.fontSize = Infoholic.FontSize;
-                    bulletGrowthText.text = "Damage Growth: [0.00]";
-                    bulletGrowthText.alpha = Infoholic.Opacity;
+                    lifeStealText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    bulletGrowthText.text = "Damage Grow: 0.00";
                     bulletGrowthText.fontSize = Infoholic.FontSize;
-                    bulletSlowText.text = "Bullet Slow: [0.00]";
-                    bulletSlowText.alpha = Infoholic.Opacity;
+                    bulletGrowthText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    bulletSlowText.text = "Bullet Slow: 0.00";
                     bulletSlowText.fontSize = Infoholic.FontSize;
-                    attackSpeedText.text = "Attack Speed: [0.30]";
-                    attackSpeedText.alpha = Infoholic.Opacity;
+                    bulletSlowText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    attackSpeedText.text = "Attack SPD: 0.30s";
                     attackSpeedText.fontSize = Infoholic.FontSize;
-                    projectileSpeedText.text = "Bullet Speed: [1.00]";
-                    projectileSpeedText.alpha = Infoholic.Opacity;
+                    attackSpeedText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    projectileSpeedText.text = "Bullet SPD: 1.00";
                     projectileSpeedText.fontSize = Infoholic.FontSize;
-                    projectileSimulationSpeedText.text = "Projectile Speed: [1.00]";
-                    projectileSimulationSpeedText.alpha = Infoholic.Opacity;
+                    projectileSpeedText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    projectileSimulationSpeedText.text = "Projectile SPD: 1.00";
                     projectileSimulationSpeedText.fontSize = Infoholic.FontSize;
-                    reloadTimeText.text = "Reload Time: [2.00]";
-                    reloadTimeText.alpha = Infoholic.Opacity;
+                    projectileSimulationSpeedText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    reloadTimeText.text = "Reload Time: 2.00s";
                     reloadTimeText.fontSize = Infoholic.FontSize;
-                    bulletGravityText.text = "Bullet Gravity: [1.00]";
-                    bulletGravityText.alpha = Infoholic.Opacity;
+                    reloadTimeText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    bulletGravityText.text = "Bullet Gravity: 1.00";
                     bulletGravityText.fontSize = Infoholic.FontSize;
-                    ammoText.text = "Ammo: [3]";
-                    ammoText.alpha = Infoholic.Opacity;
+                    bulletGravityText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    ammoText.text = "Ammo: 3";
                     ammoText.fontSize = Infoholic.FontSize;
-                    bulletsText.text = "Bullets: [1]";
-                    bulletsText.alpha = Infoholic.Opacity;
+                    ammoText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    bulletsText.text = "Bullets: 1";
                     bulletsText.fontSize = Infoholic.FontSize;
-                    rangeText.text = "Bullet Range: [0]";
-                    rangeText.alpha = Infoholic.Opacity;
+                    bulletsText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    rangeText.text = "Bullet Range: 0";
                     rangeText.fontSize = Infoholic.FontSize;
-                    reflectsText.text = "Bounces: [0]";
-                    reflectsText.alpha = Infoholic.Opacity;
+                    rangeText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    reflectsText.text = "Bounces: 0";
                     reflectsText.fontSize = Infoholic.FontSize;
-                    burstsText.text = "Bursts: [0]";
-                    burstsText.alpha = Infoholic.Opacity;
+                    reflectsText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
+                    burstsText.text = "Bursts: 0";
                     burstsText.fontSize = Infoholic.FontSize;
+                    burstsText.color = new Color(Infoholic.ColorR, Infoholic.ColorG, Infoholic.ColorB, Infoholic.Opacity);
 
                     UpdateTextPosition();
                     UpdateTextScale();
@@ -309,15 +309,19 @@ namespace Infoholic.MonoBehaviours
         {
             if (Infoholic.SimpleMode)
             {
-                healthText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -24f + Infoholic.TextY + (Infoholic.FontSpacing * 5), 0f);
+                healthText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -22f + Infoholic.TextY + (Infoholic.FontSpacing * 6), 0f);
 
-                blockCooldownText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -25f + Infoholic.TextY + (Infoholic.FontSpacing * 4), 0f);
+                damageText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -23f + Infoholic.TextY + (Infoholic.FontSpacing * 5), 0f);
 
-                damageText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -26f + Infoholic.TextY + (Infoholic.FontSpacing * 3), 0f);
+                blockCooldownText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -24f + Infoholic.TextY + (Infoholic.FontSpacing * 4), 0f);
 
-                movementSpeedText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -27f + Infoholic.TextY + (Infoholic.FontSpacing * 2), 0f);
+                movementSpeedText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -25f + Infoholic.TextY + (Infoholic.FontSpacing * 3), 0f);
 
-                attackSpeedText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -28f + Infoholic.TextY + (Infoholic.FontSpacing * 1), 0f);
+                attackSpeedText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -26f + Infoholic.TextY + (Infoholic.FontSpacing * 2), 0f);
+
+                projectileSpeedText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -27f + Infoholic.TextY + (Infoholic.FontSpacing * 2), 0f);
+
+                projectileSimulationSpeedText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -28f + Infoholic.TextY + (Infoholic.FontSpacing * 1), 0f);
 
                 reloadTimeText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -29f + Infoholic.TextY, 0f);
             }
@@ -326,13 +330,13 @@ namespace Infoholic.MonoBehaviours
             {
                 healthText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -8f + Infoholic.TextY + (Infoholic.FontSpacing * 21), 0f);
 
-                livesText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -9f + Infoholic.TextY + (Infoholic.FontSpacing * 20), 0f);
+                damageText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -9f + Infoholic.TextY + (Infoholic.FontSpacing * 20), 0f);
 
-                blockCooldownText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -10f + Infoholic.TextY + (Infoholic.FontSpacing * 19), 0f);
+                livesText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -10f + Infoholic.TextY + (Infoholic.FontSpacing * 19), 0f);
 
-                blockCountText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -11f + Infoholic.TextY + (Infoholic.FontSpacing * 18), 0f);
+                blockCooldownText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -11f + Infoholic.TextY + (Infoholic.FontSpacing * 18), 0f);
 
-                damageText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -12f + Infoholic.TextY + (Infoholic.FontSpacing * 17), 0f);
+                blockCountText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -12f + Infoholic.TextY + (Infoholic.FontSpacing * 17), 0f);
 
                 knockbackText.gameObject.transform.position = new Vector3(4.5f + Infoholic.TextX, -13f + Infoholic.TextY + (Infoholic.FontSpacing * 16), 0f);
 
@@ -386,13 +390,13 @@ namespace Infoholic.MonoBehaviours
             {
                 healthText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
+                damageText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
+
                 livesText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
 
                 blockCooldownText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
                 blockCountText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
-
-                damageText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
                 knockbackText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
 
@@ -410,9 +414,9 @@ namespace Infoholic.MonoBehaviours
 
                 attackSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
-                projectileSpeedText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
+                projectileSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
-                projectileSimulationSpeedText.gameObject.transform.localScale = new Vector3(0f, 0f, 0f);
+                projectileSimulationSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
                 reloadTimeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
@@ -433,13 +437,13 @@ namespace Infoholic.MonoBehaviours
             {
                 healthText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
+                damageText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
+
                 livesText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
                 blockCooldownText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
                 blockCountText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
-
-                damageText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 
                 knockbackText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
 

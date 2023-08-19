@@ -18,7 +18,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "1.2.0")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.0.0")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -27,7 +27,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "1.2.0";
+        public const string Version = "2.0.0";
         private const string CompatibilityModName = "Infoholic";
         public static bool DebugMode = false;
 
@@ -68,7 +68,7 @@ namespace Infoholic
                 //InfoholicDebug.Log($"[{Infoholic.ModInitials}] Map Embiggener is enabled, setting up support.");
             //}
 
-            Unbound.RegisterCredits("<b><color=#09ff00>I</color>nfo<color=#ff0000>h</color>olic</b>", new string[]
+            Unbound.RegisterCredits("<color=#09ff00>I</color>nfo<color=#ff0000>h</color>olic", new string[]
             {
                 "Penial"
             }, new string[]
@@ -85,11 +85,7 @@ namespace Infoholic
             {
                 inSettings = true;
                 previewStatsToggledPressed = false;
-
-                if (!inGame)
-                {
-                    SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
-                }
+                SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
 
             }, new Action<GameObject>(this.NewGUI), null, false);
 
@@ -104,7 +100,6 @@ namespace Infoholic
         //{
             //if (GameModeManager.CurrentHandlerID == GameModeManager.SandBoxID)
             //{
-                //inGame = true;
                 //inSandbox = true;
             //}
 
@@ -191,13 +186,7 @@ namespace Infoholic
             {
                 Infoholic.SettingsEnableMod = value;
 
-                if (inGame & SettingsEnableMod)
-                {
-                    GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
-                    Infoholic.statsToggledPressed = false;
-                }
-
-                if (!inGame & SettingsEnableMod)
+                if (SettingsEnableMod)
                 {
                     SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
                     Infoholic.previewStatsToggledPressed = false;
@@ -236,7 +225,7 @@ namespace Infoholic
                     Infoholic.statsToggledPressed = false;
                 }
             }, 50, true, null, null, null, null);
-            GameObject colorMenu = MenuHandler.CreateMenu("COLOR SETTINGS", () => { }, menu, 48, true, true, menu.transform.parent.gameObject);
+            GameObject colorMenu = MenuHandler.CreateMenu("COLOR SETTINGS", () => { }, menu, 35, true, true, menu.transform.parent.gameObject);
             ColorSettingsGUI(colorMenu);
             Slider opacitySlider;
             MenuHandler.CreateSlider("Opacity", menu, 50, 0f, 1f, Infoholic.Opacity, delegate(float value)
@@ -270,6 +259,9 @@ namespace Infoholic
                 Infoholic.Opacity = 0.75f;
                 Infoholic.FontSize = 2f;
                 Infoholic.FontSpacing = 0f;
+                Infoholic.ColorR = 1f;
+                Infoholic.ColorG = 1f;
+                Infoholic.ColorB = 1f;
                 textX.value = (float)Infoholic.TextX;
                 textY.value = (float)Infoholic.TextY;
                 opacitySlider.value = Infoholic.Opacity;
@@ -294,6 +286,107 @@ namespace Infoholic
         {
             TextMeshProUGUI textMeshProUGUI;
             MenuHandler.CreateText("INFOHOLIC COLOR SETTINGS", menu, out textMeshProUGUI, 60, true, null, null, null, null);
+
+            Slider redSlider;
+            Slider blueSlider;
+            Slider greenSlider;
+
+            MenuHandler.CreateText("CUSTOM", menu, out textMeshProUGUI, 40, true, null, null, null, null);
+            MenuHandler.CreateSlider("RED", menu, 50, 0f, 1f, Infoholic.ColorR, delegate (float value)
+            {
+                Infoholic.ColorR = value;
+            }, out redSlider, false, new Color(1f, 0f, 0f), Slider.Direction.LeftToRight, true, null, null, null, null);
+
+            MenuHandler.CreateSlider("GREEN", menu, 50, 0f, 1f, Infoholic.ColorG, delegate (float value)
+            {
+                Infoholic.ColorG = value;
+            }, out greenSlider, false, new Color(0f, 1f, 0f), Slider.Direction.LeftToRight, true, null, null, null, null);
+
+            MenuHandler.CreateSlider("BLUE", menu, 50, 0f, 1f, Infoholic.ColorB, delegate (float value)
+            {
+                Infoholic.ColorB = value;
+            }, out blueSlider, false, new Color(0f, 0f, 1f), Slider.Direction.LeftToRight, true, null, null, null, null);
+
+            MenuHandler.CreateText("PRESETS", menu, out textMeshProUGUI, 40, true, null, null, null, null);
+            MenuHandler.CreateButton("<color=#ffffff>WHITE</color>", menu, delegate ()
+            {
+                Infoholic.ColorR = 1f;
+                Infoholic.ColorG = 1f;
+                Infoholic.ColorB = 1f;
+                redSlider.value = (float)Infoholic.ColorR;
+                greenSlider.value = (float)Infoholic.ColorG;
+                blueSlider.value = (float)Infoholic.ColorB;
+            }, 30, true, null, null, null, null);
+
+            MenuHandler.CreateButton("<color=#ff0000>RED</color>", menu, delegate ()
+            {
+                Infoholic.ColorR = 1f;
+                Infoholic.ColorG = 0f;
+                Infoholic.ColorB = 0f;
+                redSlider.value = (float)Infoholic.ColorR;
+                greenSlider.value = (float)Infoholic.ColorG;
+                blueSlider.value = (float)Infoholic.ColorB;
+            }, 30, true, null, null, null, null);
+
+            MenuHandler.CreateButton("<color=#ff8000>ORANGE</color>", menu, delegate ()
+            {
+                Infoholic.ColorR = 1f;
+                Infoholic.ColorG = 0.5f;
+                Infoholic.ColorB = 0f;
+                redSlider.value = (float)Infoholic.ColorR;
+                greenSlider.value = (float)Infoholic.ColorG;
+                blueSlider.value = (float)Infoholic.ColorB;
+            }, 30, true, null, null, null, null);
+
+            MenuHandler.CreateButton("<color=#ffff00>YELLOW</color>", menu, delegate ()
+            {
+                Infoholic.ColorR = 1f;
+                Infoholic.ColorG = 1f;
+                Infoholic.ColorB = 0f;
+                redSlider.value = (float)Infoholic.ColorR;
+                greenSlider.value = (float)Infoholic.ColorG;
+                blueSlider.value = (float)Infoholic.ColorB;
+            }, 30, true, null, null, null, null);
+
+            MenuHandler.CreateButton("<color=#00ff00>GREEN</color>", menu, delegate ()
+            {
+                Infoholic.ColorR = 0f;
+                Infoholic.ColorG = 1f;
+                Infoholic.ColorB = 0f;
+                redSlider.value = (float)Infoholic.ColorR;
+                greenSlider.value = (float)Infoholic.ColorG;
+                blueSlider.value = (float)Infoholic.ColorB;
+            }, 30, true, null, null, null, null);
+
+            MenuHandler.CreateButton("<color=#0000ff>BLUE</color>", menu, delegate ()
+            {
+                Infoholic.ColorR = 0f;
+                Infoholic.ColorG = 0f;
+                Infoholic.ColorB = 1f;
+                redSlider.value = (float)Infoholic.ColorR;
+                greenSlider.value = (float)Infoholic.ColorG;
+                blueSlider.value = (float)Infoholic.ColorB;
+            }, 30, true, null, null, null, null);
+
+            MenuHandler.CreateButton("<color=#8000ff>PURPLE</color>", menu, delegate ()
+            {
+                Infoholic.ColorR = 0.5f;
+                Infoholic.ColorG = 0f;
+                Infoholic.ColorB = 1f;
+                redSlider.value = (float)Infoholic.ColorR;
+                greenSlider.value = (float)Infoholic.ColorG;
+                blueSlider.value = (float)Infoholic.ColorB;
+            }, 30, true, null, null, null, null);
+
+            MenuHandler.CreateButton("<color=#ff66b3>PINK</color>", menu, delegate ()
+            {
+                Infoholic.ColorR = 1f;
+                Infoholic.ColorG = 0.4f;
+                Infoholic.ColorB = 0.7f;
+                redSlider.value = (float)Infoholic.ColorR;
+                greenSlider.value = (float)Infoholic.ColorG;
+                blueSlider.value = (float)Infoholic.ColorB;
+            }, 30, true, null, null, null, null);
         }
 
         private void Update()
@@ -320,10 +413,10 @@ namespace Infoholic
                 haveDetectedKey = true;
             }
 
-            checkIfInGame();
+            CheckIfInGame();
         }
 
-        private void checkIfInGame()
+        private void CheckIfInGame()
         {
             if (!GameManager.instance.isPlaying && inGame)
             {
@@ -448,6 +541,42 @@ namespace Infoholic
             set
             {
                 PlayerPrefs.SetInt(Infoholic.GetConfigKey("texty"), value);
+            }
+        }
+
+        public static float ColorR
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat(Infoholic.GetConfigKey("colorr"), 1f);
+            }
+            set
+            {
+                PlayerPrefs.SetFloat(Infoholic.GetConfigKey("colorr"), value);
+            }
+        }
+
+        public static float ColorG
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat(Infoholic.GetConfigKey("colorg"), 1f);
+            }
+            set
+            {
+                PlayerPrefs.SetFloat(Infoholic.GetConfigKey("colorg"), value);
+            }
+        }
+
+        public static float ColorB
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat(Infoholic.GetConfigKey("colorb"), 1f);
+            }
+            set
+            {
+                PlayerPrefs.SetFloat(Infoholic.GetConfigKey("colorb"), value);
             }
         }
 
