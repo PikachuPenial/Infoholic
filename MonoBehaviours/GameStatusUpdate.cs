@@ -33,7 +33,7 @@ namespace Infoholic.MonoBehaviours
         private Player getLocalPlayer()
         {
             Player player = null;
-            PlayerManager.instance.players.ForEach(p => { if (p.data.view.IsMine) player = p; });
+            PlayerManager.instance.players.ForEach(p => { if (p.data.view.IsMine && !p.GetComponent<PlayerAPI>().enabled) player = p; });
             return player;
         }
 
