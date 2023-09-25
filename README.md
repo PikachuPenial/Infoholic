@@ -9,6 +9,21 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 2.1.0</summary>
+<br>
+
+Released on <i>9/24/2023</i>
+
+Added support when playing in a match w/ bots (@AALUND13)
+
+Optimized stat interface while in game/in settings
+
+Removed custom logger 
+
+---
+</details>
+
+<details>
 <summary>Version 2.0.2</summary>
 <br>
 

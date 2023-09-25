@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using BepInEx;
-using BepInEx.Configuration;
 using HarmonyLib;
 using TMPro;
 using UnboundLib;
 using UnboundLib.GameModes;
-using UnboundLib.Utils;
 using UnboundLib.Utils.UI;
 using Infoholic.MonoBehaviours;
-using Infoholic.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.0.2")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.1.0")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -27,7 +22,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "2.0.2";
+        public const string Version = "2.1.0";
         private const string CompatibilityModName = "Infoholic";
         public static bool DebugMode = false;
 
@@ -58,16 +53,6 @@ namespace Infoholic
 
         void Start()
         {
-            //var plugins = (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-            //willsWackyCards = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.willuwontu.rounds.cards");
-            //classesManagerReborn = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "root.classes.manager.reborn");
-            //mapEmbiggener = plugins.Exists(plugin => plugin.Info.Metadata.GUID == "pykess.rounds.plugins.mapembiggener");
-
-            //if (mapEmbiggener == true)
-            //{
-                //InfoholicDebug.Log($"[{Infoholic.ModInitials}] Map Embiggener is enabled, setting up support.");
-            //}
-
             Unbound.RegisterCredits("<color=#09ff00>I</color>nfo<color=#ff0000>h</color>olic", new string[]
             {
                 "Penial"
@@ -86,7 +71,6 @@ namespace Infoholic
                 inSettings = true;
                 previewStatsToggledPressed = false;
                 SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
-
             }, new Action<GameObject>(this.NewGUI), null, false);
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, this.GameStart);
@@ -95,21 +79,6 @@ namespace Infoholic
             GameModeManager.AddHook(GameModeHooks.HookPickStart, this.PickStart);
             GameModeManager.AddHook(GameModeHooks.HookRoundStart, this.RoundStart);
         }
-
-        //void Update()
-        //{
-            //if (GameModeManager.CurrentHandlerID == GameModeManager.SandBoxID)
-            //{
-                //inSandbox = true;
-            //}
-
-            //if (inSandbox & !inSandboxStatsSpawned)
-            //{
-                //GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
-                //inSandboxStatsSpawned = true;
-            //}
-
-        //}
 
         private IEnumerator GameStart(IGameModeHandler gameModeHandler)
         {
@@ -120,8 +89,6 @@ namespace Infoholic
             {
                 GameStatusUpdate gameStatusUpdate = new GameObject().AddComponent<GameStatusUpdate>();
             }
-
-            InfoholicDebug.Log($"[{Infoholic.ModInitials}] inGame is now true.");
             yield break;
         }
 
@@ -130,8 +97,6 @@ namespace Infoholic
             inGame = false;
             inPick = false;
             inBattle = false;
-
-            InfoholicDebug.Log($"[{Infoholic.ModInitials}] inGame is now false.");
             yield break;
         }
 
@@ -149,8 +114,6 @@ namespace Infoholic
             {
                 Infoholic.statsToggledPressed = true;
             }
-
-            InfoholicDebug.Log($"[{Infoholic.ModInitials}] inPick is now true.");
             yield break;
         }
 
@@ -168,8 +131,6 @@ namespace Infoholic
             {
                 Infoholic.statsToggledPressed = true;
             }
-
-            InfoholicDebug.Log($"[{Infoholic.ModInitials}] inPick is now true.");
             yield break;
         }
 
@@ -190,7 +151,6 @@ namespace Infoholic
                 {
                     SettingsPreview settingsPreview = new GameObject().AddComponent<SettingsPreview>();
                     Infoholic.previewStatsToggledPressed = false;
-                    InfoholicDebug.Log($"[{Infoholic.ModInitials}] SETTINGS PREVIEW PULLED UP since you are NOT in game, and are in the settings menu.");
                 }
             }, 50, true, null, null, null, null);
             GameObject toggle2 = MenuHandler.CreateToggle(Infoholic.SimpleMode, "<b><color=#00e5ff>Simplistic</color></b> Mode (less stats)", menu, delegate (bool value)
@@ -272,13 +232,11 @@ namespace Infoholic
             {
                 Infoholic.previewStatsToggledPressed = false;
                 Infoholic.inSettings = false;
-                InfoholicDebug.Log($"[{Infoholic.ModInitials}] MENU CLOSED");
             });
             menu.transform.Find("Group/Back").gameObject.GetComponent<Button>().onClick.AddListener(delegate ()
             {
                 Infoholic.previewStatsToggledPressed = false;
                 Infoholic.inSettings = false;
-                InfoholicDebug.Log($"[{Infoholic.ModInitials}] MENU CLOSED");
             });
         }
 
