@@ -9,6 +9,19 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 2.1.1</summary>
+<br>
+
+Released on <i>9/30/2023</i>
+
+Fixed the toggle keybind not functioning properly (again)
+
+Adjusted text on settings
+
+---
+</details>
+
+<details>
 <summary>Version 2.1.0</summary>
 <br>
 

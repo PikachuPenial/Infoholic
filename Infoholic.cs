@@ -13,7 +13,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.1.0")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.1.1")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -22,7 +22,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "2.1.0";
+        public const string Version = "2.1.1";
         private const string CompatibilityModName = "Infoholic";
         public static bool DebugMode = false;
 
@@ -157,7 +157,7 @@ namespace Infoholic
             {
                 Infoholic.SimpleMode = value;
             }, 50, true, null, null, null, null);
-            GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringPickPhase, "Hide during pick phase", menu, delegate(bool value)
+            GameObject toggle3 = MenuHandler.CreateToggle(Infoholic.DisableDuringPickPhase, "Hide on pick phase", menu, delegate(bool value)
             {
                 Infoholic.DisableDuringPickPhase = value;
 
@@ -171,7 +171,7 @@ namespace Infoholic
                     Infoholic.statsToggledPressed = false;
                 }
             }, 50, true, null, null, null, null);
-            GameObject toggle4 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Hide during battle phase", menu, delegate (bool value)
+            GameObject toggle4 = MenuHandler.CreateToggle(Infoholic.DisableDuringBattlePhase, "Hide on battle phase", menu, delegate (bool value)
             {
                 Infoholic.DisableDuringBattlePhase = value;
 
