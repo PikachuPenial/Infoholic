@@ -9,6 +9,17 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 2.1.2</summary>
+<br>
+
+Released on <i>10/14/2023</i>
+
+Fixed stat interface not properly updating when changing certain mod options
+
+---
+</details>
+
+<details>
 <summary>Version 2.1.1</summary>
 <br>
 

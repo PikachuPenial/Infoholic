@@ -13,7 +13,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.1.1")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.1.2")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -22,7 +22,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "2.1.1";
+        public const string Version = "2.1.2";
         private const string CompatibilityModName = "Infoholic";
         public static bool DebugMode = false;
 
