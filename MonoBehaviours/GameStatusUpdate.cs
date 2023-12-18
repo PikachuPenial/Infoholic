@@ -244,6 +244,14 @@ namespace Infoholic.MonoBehaviours
 
         public void Update()
         {
+            if(player is null || player == null) 
+            {
+                //To hopefuly prevent this little error as you see well haha in sandbox players is null... bruh..
+                //[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+                //Stack trace:
+                //Infoholic.MonoBehaviours.GameStatusUpdate.Update () (at <93b011edc63a48bc80483fef0c6cc798>:0)
+                 return;
+            }     
             healthText.text = $"HP: {player.data.health:f0} / {player.data.maxHealth:f0}";
             damageText.text = $"DMG: {(gun.damage * 55f) * gun.bulletDamageMultiplier:f0}";
             livesText.text = $"Lives: {player.data.stats.respawns + 1:f0}";
