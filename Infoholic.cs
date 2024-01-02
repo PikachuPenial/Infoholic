@@ -13,7 +13,7 @@ using UnityEngine.UI;
 namespace Infoholic
 {
     [BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.1.2")]
+    [BepInPlugin("com.penial.rounds.Infoholic", "Infoholic", "2.1.3")]
     [BepInProcess("Rounds.exe")]
 
     public class Infoholic : BaseUnityPlugin
@@ -22,7 +22,7 @@ namespace Infoholic
         public const string ModInitials = "IH";
         private const string ModId = "com.penial.rounds.Infoholic";
         private const string ModName = "Infoholic";
-        public const string Version = "2.1.2";
+        public const string Version = "2.1.3";
         private const string CompatibilityModName = "Infoholic";
         public static bool DebugMode = false;
 
@@ -63,7 +63,7 @@ namespace Infoholic
             }, new string[]
             {
                 "https://github.com/PikachuPenial/Infoholic",
-                "https://steamcommunity.com/id/penialsteam",
+                "https://steamcommunity.com/profiles/76561198168653752",
             });
 
             Unbound.RegisterMenu("Infoholic Settings", delegate ()

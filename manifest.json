@@ -1,10 +1,10 @@
 {
     "name": "Infoholic",
-    "version_number": "2.1.2",
+    "version_number": "2.1.3",
     "website_url": "https://github.com/PikachuPenial/Infoholic",
     "description": "A ROUNDS mod that shows you the most important stats at all times! Created by Penial.",
     "dependencies": [
-        "willis81808-UnboundLib-3.2.10",
+        "willis81808-UnboundLib-3.2.13",
         "willis81808-MMHook-1.0.0",
         "BepInEx-BepInExPack_ROUNDS-5.4.1900"
     ]

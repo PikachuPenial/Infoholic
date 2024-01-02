@@ -43,7 +43,7 @@ namespace Infoholic.MonoBehaviours
             // Health
             healthText = new GameObject().AddComponent<TextMeshProUGUI>();
             healthText.gameObject.AddComponent<DestroyOnUnparent>();
-            healthText.transform.parent = gameObject.transform;
+            healthText.transform.SetParent(gameObject.transform, false);
             healthText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             healthText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             healthText.fontSize = Infoholic.FontSize;
@@ -52,7 +52,7 @@ namespace Infoholic.MonoBehaviours
             // Lives
             livesText = new GameObject().AddComponent<TextMeshProUGUI>();
             livesText.gameObject.AddComponent<DestroyOnUnparent>();
-            livesText.transform.parent = gameObject.transform;
+            livesText.transform.SetParent(gameObject.transform, false);
             livesText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             livesText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             livesText.fontSize = Infoholic.FontSize;
@@ -61,7 +61,7 @@ namespace Infoholic.MonoBehaviours
             // Block Cooldown
             blockCooldownText = new GameObject().AddComponent<TextMeshProUGUI>();
             blockCooldownText.gameObject.AddComponent<DestroyOnUnparent>();
-            blockCooldownText.transform.parent = gameObject.transform;
+            blockCooldownText.transform.SetParent(gameObject.transform, false);
             blockCooldownText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             blockCooldownText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             blockCooldownText.fontSize = Infoholic.FontSize;
@@ -70,7 +70,7 @@ namespace Infoholic.MonoBehaviours
             // Additional Blocks
             blockCountText = new GameObject().AddComponent<TextMeshProUGUI>();
             blockCountText.gameObject.AddComponent<DestroyOnUnparent>();
-            blockCountText.transform.parent = gameObject.transform;
+            blockCountText.transform.SetParent(gameObject.transform, false);
             blockCountText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             blockCountText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             blockCountText.fontSize = Infoholic.FontSize;
@@ -79,7 +79,7 @@ namespace Infoholic.MonoBehaviours
             // Damage
             damageText = new GameObject().AddComponent<TextMeshProUGUI>();
             damageText.gameObject.AddComponent<DestroyOnUnparent>();
-            damageText.transform.parent = gameObject.transform;
+            damageText.transform.SetParent(gameObject.transform, false);
             damageText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             damageText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             damageText.fontSize = Infoholic.FontSize;
@@ -88,7 +88,7 @@ namespace Infoholic.MonoBehaviours
             // Knockback
             knockbackText = new GameObject().AddComponent<TextMeshProUGUI>();
             knockbackText.gameObject.AddComponent<DestroyOnUnparent>();
-            knockbackText.transform.parent = gameObject.transform;
+            knockbackText.transform.SetParent(gameObject.transform, false);
             knockbackText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             knockbackText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             knockbackText.fontSize = Infoholic.FontSize;
@@ -97,7 +97,7 @@ namespace Infoholic.MonoBehaviours
             // Life Steal
             lifeStealText = new GameObject().AddComponent<TextMeshProUGUI>();
             lifeStealText.gameObject.AddComponent<DestroyOnUnparent>();
-            lifeStealText.transform.parent = gameObject.transform;
+            lifeStealText.transform.SetParent(gameObject.transform, false);
             lifeStealText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             lifeStealText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             lifeStealText.fontSize = Infoholic.FontSize;
@@ -106,7 +106,7 @@ namespace Infoholic.MonoBehaviours
             // Bullet Growth
             bulletGrowthText = new GameObject().AddComponent<TextMeshProUGUI>();
             bulletGrowthText.gameObject.AddComponent<DestroyOnUnparent>();
-            bulletGrowthText.transform.parent = gameObject.transform;
+            bulletGrowthText.transform.SetParent(gameObject.transform, false);
             bulletGrowthText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             bulletGrowthText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             bulletGrowthText.fontSize = Infoholic.FontSize;
@@ -115,7 +115,7 @@ namespace Infoholic.MonoBehaviours
             // Bullet Slow
             bulletSlowText = new GameObject().AddComponent<TextMeshProUGUI>();
             bulletSlowText.gameObject.AddComponent<DestroyOnUnparent>();
-            bulletSlowText.transform.parent = gameObject.transform;
+            bulletSlowText.transform.SetParent(gameObject.transform, false);
             bulletSlowText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             bulletSlowText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             bulletSlowText.fontSize = Infoholic.FontSize;
@@ -125,7 +125,7 @@ namespace Infoholic.MonoBehaviours
             // Movement Speed
             movementSpeedText = new GameObject().AddComponent<TextMeshProUGUI>();
             movementSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
-            movementSpeedText.transform.parent = gameObject.transform;
+            movementSpeedText.transform.SetParent(gameObject.transform, false);
             movementSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             movementSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             movementSpeedText.fontSize = Infoholic.FontSize;
@@ -134,7 +134,7 @@ namespace Infoholic.MonoBehaviours
             // Jump Height
             jumpHeightText = new GameObject().AddComponent<TextMeshProUGUI>();
             jumpHeightText.gameObject.AddComponent<DestroyOnUnparent>();
-            jumpHeightText.transform.parent = gameObject.transform;
+            jumpHeightText.transform.SetParent(gameObject.transform, false);
             jumpHeightText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             jumpHeightText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             jumpHeightText.fontSize = Infoholic.FontSize;
@@ -143,7 +143,7 @@ namespace Infoholic.MonoBehaviours
             // Player Size
             playerSizeText = new GameObject().AddComponent<TextMeshProUGUI>();
             playerSizeText.gameObject.AddComponent<DestroyOnUnparent>();
-            playerSizeText.transform.parent = gameObject.transform;
+            playerSizeText.transform.SetParent(gameObject.transform, false);
             playerSizeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             playerSizeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             playerSizeText.fontSize = Infoholic.FontSize;
@@ -152,7 +152,7 @@ namespace Infoholic.MonoBehaviours
             // Attack Speed
             attackSpeedText = new GameObject().AddComponent<TextMeshProUGUI>();
             attackSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
-            attackSpeedText.transform.parent = gameObject.transform;
+            attackSpeedText.transform.SetParent(gameObject.transform, false);
             attackSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             attackSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             attackSpeedText.fontSize = Infoholic.FontSize;
@@ -161,7 +161,7 @@ namespace Infoholic.MonoBehaviours
             // Projectile Speed
             projectileSpeedText = new GameObject().AddComponent<TextMeshProUGUI>();
             projectileSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
-            projectileSpeedText.transform.parent = gameObject.transform;
+            projectileSpeedText.transform.SetParent(gameObject.transform, false);
             projectileSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             projectileSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             projectileSpeedText.fontSize = Infoholic.FontSize;
@@ -170,7 +170,7 @@ namespace Infoholic.MonoBehaviours
             // Projectile Simulation Speed
             projectileSimulationSpeedText = new GameObject().AddComponent<TextMeshProUGUI>();
             projectileSimulationSpeedText.gameObject.AddComponent<DestroyOnUnparent>();
-            projectileSimulationSpeedText.transform.parent = gameObject.transform;
+            projectileSimulationSpeedText.transform.SetParent(gameObject.transform, false);
             projectileSimulationSpeedText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             projectileSimulationSpeedText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             projectileSimulationSpeedText.fontSize = Infoholic.FontSize;
@@ -179,7 +179,7 @@ namespace Infoholic.MonoBehaviours
             // Reload Time
             reloadTimeText = new GameObject().AddComponent<TextMeshProUGUI>();
             reloadTimeText.gameObject.AddComponent<DestroyOnUnparent>();
-            reloadTimeText.transform.parent = gameObject.transform;
+            reloadTimeText.transform.SetParent(gameObject.transform, false);
             reloadTimeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             reloadTimeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             reloadTimeText.fontSize = Infoholic.FontSize;
@@ -188,7 +188,7 @@ namespace Infoholic.MonoBehaviours
             // Bullet Gravity
             bulletGravityText = new GameObject().AddComponent<TextMeshProUGUI>();
             bulletGravityText.gameObject.AddComponent<DestroyOnUnparent>();
-            bulletGravityText.transform.parent = gameObject.transform;
+            bulletGravityText.transform.SetParent(gameObject.transform, false);
             bulletGravityText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             bulletGravityText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             bulletGravityText.fontSize = Infoholic.FontSize;
@@ -197,7 +197,7 @@ namespace Infoholic.MonoBehaviours
             // Ammo
             ammoText = new GameObject().AddComponent<TextMeshProUGUI>();
             ammoText.gameObject.AddComponent<DestroyOnUnparent>();
-            ammoText.transform.parent = gameObject.transform;
+            ammoText.transform.SetParent(gameObject.transform, false);
             ammoText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             ammoText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             ammoText.fontSize = Infoholic.FontSize;
@@ -206,7 +206,7 @@ namespace Infoholic.MonoBehaviours
             // Bullets
             bulletsText = new GameObject().AddComponent<TextMeshProUGUI>();
             bulletsText.gameObject.AddComponent<DestroyOnUnparent>();
-            bulletsText.transform.parent = gameObject.transform;
+            bulletsText.transform.SetParent(gameObject.transform, false);
             bulletsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             bulletsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             bulletsText.fontSize = Infoholic.FontSize;
@@ -215,7 +215,7 @@ namespace Infoholic.MonoBehaviours
             // Bullet Range
             rangeText = new GameObject().AddComponent<TextMeshProUGUI>();
             rangeText.gameObject.AddComponent<DestroyOnUnparent>();
-            rangeText.transform.parent = gameObject.transform;
+            rangeText.transform.SetParent(gameObject.transform, false);
             rangeText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             rangeText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             rangeText.fontSize = Infoholic.FontSize;
@@ -224,7 +224,7 @@ namespace Infoholic.MonoBehaviours
             // Reflects
             reflectsText = new GameObject().AddComponent<TextMeshProUGUI>();
             reflectsText.gameObject.AddComponent<DestroyOnUnparent>();
-            reflectsText.transform.parent = gameObject.transform;
+            reflectsText.transform.SetParent(gameObject.transform, false);
             reflectsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             reflectsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             reflectsText.fontSize = Infoholic.FontSize;
@@ -233,7 +233,7 @@ namespace Infoholic.MonoBehaviours
             // Bursts
             burstsText = new GameObject().AddComponent<TextMeshProUGUI>();
             burstsText.gameObject.AddComponent<DestroyOnUnparent>();
-            burstsText.transform.parent = gameObject.transform;
+            burstsText.transform.SetParent(gameObject.transform, false);
             burstsText.gameObject.transform.localScale = new Vector3(Infoholic.statsToggled, Infoholic.statsToggled, Infoholic.statsToggled);
             burstsText.gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
             burstsText.fontSize = Infoholic.FontSize;
@@ -244,14 +244,11 @@ namespace Infoholic.MonoBehaviours
 
         public void Update()
         {
-            if(player is null || player == null) 
+            if (player is null || player == null) 
             {
-                //To hopefuly prevent this little error as you see well haha in sandbox players is null... bruh..
-                //[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
-                //Stack trace:
-                //Infoholic.MonoBehaviours.GameStatusUpdate.Update () (at <93b011edc63a48bc80483fef0c6cc798>:0)
                  return;
-            }     
+            }
+
             healthText.text = $"HP: {player.data.health:f0} / {player.data.maxHealth:f0}";
             damageText.text = $"DMG: {(gun.damage * 55f) * gun.bulletDamageMultiplier:f0}";
             livesText.text = $"Lives: {player.data.stats.respawns + 1:f0}";

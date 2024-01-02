@@ -9,6 +9,21 @@
 <i>Patch Notes</i>
 
 <details>
+<summary>Version 2.1.3</summary>
+<br>
+
+Released on <i>1/2/2024</i>
+
+Fixed errors due to text parenting
+
+Fixed stat text running despite player being NULL (typically when playing Sandbox)
+
+Updated UnboundLib
+
+---
+</details>
+
+<details>
 <summary>Version 2.1.2</summary>
 <br>
 
